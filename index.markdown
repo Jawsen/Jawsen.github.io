@@ -5,7 +5,7 @@ title: "Narcotics in San Francisco"
 
 # Narcotics and Drug Use in San Francisco
 
-*A data-driven story exploring drug-related crime patterns in San Francisco.*
+_A data-driven story exploring drug-related crime patterns in San Francisco._
 
 ---
 
@@ -17,9 +17,9 @@ San Francisco has long struggled with narcotics-related crimes. In this story, w
 
 ## Trend Over Time
 
-Let's first look at how drug-related crime reports have changed over the years.
+![Calendar Heatmap of Drug/Narcotic Crime in SF](assets/images/calendar_plot.png)
 
-![Placeholder for trend chart](https://via.placeholder.com/800x400?text=Trend+Over+Time+Chart)
+*Figure: Calendar plot showing daily drug/narcotic incident frequency from 2009–2019 in San Francisco.*
 
 ---
 
@@ -45,4 +45,4 @@ Drug-related crimes in San Francisco tend to cluster in specific neighborhoods a
 
 ---
 
-*Created by Jawsen — Data source: San Francisco Open Data Portal*
+_Created by Jawsen — Data source: San Francisco Open Data Portal_
