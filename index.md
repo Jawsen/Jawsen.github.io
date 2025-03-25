@@ -17,9 +17,9 @@ San Francisco has long struggled with narcotics-related crimes. In this story, w
 
 ## Trend Over Time
 
-![Calendar Heatmap of Drug/Narcotic Crime in SF](assets/images/calendar_plot.png)
+![Calendar Heatmap of Drug/Narcotic Crime in SF](/_site/assets/images/calendar_plot.png)
 
-*Figure: Calendar plot showing daily drug/narcotic incident frequency from 2009–2019 in San Francisco.*
+_Figure: Calendar plot showing daily drug/narcotic incident frequency from 2009–2019 in San Francisco._
 
 ---
 
