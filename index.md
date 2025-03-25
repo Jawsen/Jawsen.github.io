@@ -27,7 +27,7 @@ _Figure: Calendar plot showing daily drug/narcotic incident frequency from 2009â
 
 Hereâ€™s a map showing the hotspots of narcotics-related crime across San Francisco neighborhoods.
 
-<iframe src="https://via.placeholder.com/800x400?text=Crime+Map+Placeholder" width="100%" height="400" style="border:none;"></iframe>
+<iframe src="/assets/interactive_map.html" width="100%" height="600" style="border:none;"></iframe>
 
 ---
 
