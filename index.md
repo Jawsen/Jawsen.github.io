@@ -19,12 +19,13 @@ San Francisco has long struggled with narcotics-related crimes. In this story, w
 
 ![Calendar Heatmap of Drug/Narcotic Crime in SF](/assets/images/calendar_plot.png)
 
-\_Figure: **Calendar plot showing daily drug/narcotic incident frequency from 2009–2019 in San Francisco.**
-The calendar visualizes a detailed year-by-year overview of drug/narcotic-related incidents in San Francisco from 2009 to 2019. Each row corresponds to a calendar year, with individual squares representing single days. The color intensity indicates the frequency of incidents on the day where darker green signifies a higher number of incidents.
+_Figure: Calendar plot showing daily drug/narcotic incident frequency from 2009–2019 in San Francisco._
 
-What stands out immediately is the high density of dark green cells in 2009, especially concentrated in certain periods such as early spring and mid-summer. This suggests that drug-related crime was not only more prevalent but also more consistently reported throughout the calendar year.
+The calendar visualizes a detailed year-by-year overview of drug/narcotic-related incidents. Each row represents a calendar year, and each square represents a single day. Color intensity (shades of green) reflects the frequency of incidents, where darker green indicates higher crime counts.
 
-As we move downward through the years, the green gradually fades. From around 2014 onward, the number of dark-colored cells drops significantly. By 2018–2019, the calendar is largely filled with pale or nearly white squares — a visual confirmation of the steady and substantial decline in drug/narcotic offenses over the decade.\_
+What stands out is the dense clustering of incidents in 2009, especially around early spring and summer. This suggests drug-related crime was not only more prevalent but also more consistent throughout the year.
+
+From 2014 onward, the green fades significantly. By 2018–2019, the calendar is mostly pale — a visual confirmation of the steady decline in drug/narcotic offenses over the decade.
 
 ---
 
