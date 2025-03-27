@@ -5,13 +5,13 @@ title: "Narcotics in San Francisco"
 
 # Narcotics and Drug Use in San Francisco
 
-_A data-driven story exploring drug-related crime patterns in San Francisco._
+_A data-driven story exploring drug and narcotics related crime patterns in San Francisco._
 
 ---
 
 ## Introduction
 
-San Francisco has long struggled with narcotics-related crimes. In this story, we are going to explore when and where these crimes occur and how trends have shifted over time. Our analysis will focuse on the period from 2009 to 2019.
+San Francisco has long struggled with drugs and narcotics related crimes. In this story, we are going to explore when and where these crimes occur and how trends have shifted over time. Our analysis will focuse on the period from 2009 to 2019.
 
 ---
 
@@ -34,9 +34,9 @@ From 2014 onward, the green fades significantly. By 2018–2019, the calendar is
 Here’s a map showing the hotspots of narcotics-related crime across San Francisco neighborhoods.
 
 <iframe src="/assets/interactive_map.html" width="100%" height="600" style="border:none;"></iframe>
-_Figure 2: Heatmap of drug/narcotic incidents across San Francisco neighborhoods from 2009–2019.
+Figure 2: Geospatial heatmap of drug/narcotic incidents across San Francisco neighborhoods from 2009–2019.
 
-The geospatial heatmap visualizes the geographical distribution of drug-related crimes in San Francisco. Areas with higher concentrations of incidents appear in warmer colors (yellow to green), while lower activity is shown in cooler tones (blue to purple). Because the map is citywide, specific hotspots may be hard to distinguish at first glance — but zooming in reveals clearer clusters of activity. ßIt can be seen that some of the most prominent hotspots emerges around Tenderloin, Mission, Southern & Bayview districts
+The geospatial heatmap visualizes the geographical distribution of drug-related crimes in San Francisco. Areas with higher concentrations of incidents appear in warmer colors (yellow to green), while lower activity is shown in cooler tones (blue to purple). Because the map is citywide, specific hotspots may be difficult to distinguish at first glance — but zooming in reveals clearer clusters of activity. Some of the most prominent hotspots emerge around the Tenderloin, Mission, Southern, and Bayview districts.
 
 ## Explore the Data Yourself
 
