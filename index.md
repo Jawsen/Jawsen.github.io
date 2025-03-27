@@ -11,7 +11,7 @@ _A data-driven story exploring drug-related crime patterns in San Francisco._
 
 ## Introduction
 
-San Francisco has long struggled with narcotics-related crimes. In this story, we explore when, where, and how drug-related crimes happen using open data from the city.
+San Francisco has long struggled with narcotics-related crimes. In this story, we are going to explore when and where these crimes occur and how trends have shifted over time. Our analysis will focuse on the period from 2009 to 2019.
 
 ---
 
@@ -19,7 +19,7 @@ San Francisco has long struggled with narcotics-related crimes. In this story, w
 
 ![Calendar Heatmap of Drug/Narcotic Crime in SF](/assets/images/calendar_plot.png)
 
-_Figure: Calendar plot showing daily drug/narcotic incident frequency from 2009–2019 in San Francisco._
+_Figure 1: Calendar plot showing daily drug/narcotic incident frequency from 2009–2019 in San Francisco._
 
 The calendar visualizes a detailed year-by-year overview of drug/narcotic-related incidents. Each row represents a calendar year, and each square represents a single day. Color intensity (shades of green) reflects the frequency of incidents, where darker green indicates higher crime counts.
 
@@ -34,14 +34,19 @@ From 2014 onward, the green fades significantly. By 2018–2019, the calendar is
 Here’s a map showing the hotspots of narcotics-related crime across San Francisco neighborhoods.
 
 <iframe src="/assets/interactive_map.html" width="100%" height="600" style="border:none;"></iframe>
-_Figure: Test._
----
+_Figure 2: Heatmap of drug/narcotic incidents across San Francisco neighborhoods from 2009–2019.
+
+The geospatial heatmap visualizes the geographical distribution of drug-related crimes in San Francisco. Areas with higher concentrations of incidents appear in warmer colors (yellow to green), while lower activity is shown in cooler tones (blue to purple). Because the map is citywide, specific hotspots may be hard to distinguish at first glance — but zooming in reveals clearer clusters of activity. ßIt can be seen that some of the most prominent hotspots emerges around Tenderloin, Mission, Southern & Bayview districts
 
 ## Explore the Data Yourself
 
 This interactive chart lets you explore narcotics crimes by year and neighborhood.
 
 <iframe src="https://via.placeholder.com/800x400?text=Bokeh+Visualization+Placeholder" width="100%" height="400" style="border:none;"></iframe>
+
+---
+
+## Findings
 
 ---
 
