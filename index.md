@@ -28,7 +28,7 @@ The calendar visualizes a detailed year-by-year overview of drug/narcotic-relate
 
 What stands out is the dense clustering of incidents in 2009, especially around early spring and summer. This suggests drug and narcotic related crime was not only more prevalent but also more consistent throughout the year.
 
-From 2014 onward, the green fades significantly. By 2018–2019, the calendar is mostly pale — a visual confirmation of the steady decline in drug/narcotic offenses over the decade.
+From 2014 onward, the green fades significantly. By 2018–2019, the calendar is mostly pale, a visual confirmation of the steady decline in drug/narcotic offenses over the decade.
 
 ---
 
@@ -49,6 +49,7 @@ To put drug-related crime in perspective, we looked at how it compares to anothe
 
 <iframe src="/assets/bokeh.html" width="100%" height="500" style="border:none;"></iframe>
 _Figure 3: Bokeh interactive chart comparing drug/narcotic and assault incidents by police district._
+
 What becomes clear is that drug-related incidents are highly concentrated in specific districts, particularly the Tenderloin while assault incidents are more evenly spread across the city. This difference highlights how certain neighborhoods may face unique challenges related to drug activity, while others experience broader patterns of violence or disorder. The persistent prominence of the Tenderloin in drug-related crime reinforces its role as a long-standing hotspot, potentially shaped by overlapping factors such as housing, public health infrastructure, and socioeconomic conditions.
 
 ---
@@ -57,9 +58,9 @@ What becomes clear is that drug-related incidents are highly concentrated in spe
 
 The visualizations reveal a clear temporal and spatial pattern in drug/narcotic-related crime across San Francisco.
 
-In the calendar heatmap, we see that drug-related incidents peaked sharply in 2009, with frequent daily activity especially during the spring and summer months. Over the years, incident counts began to decline — and by 2018–2019, most days recorded little or no activity. This trend suggests a gradual shift in either public behavior, policing practices, or policy emphasis.
+In the calendar heatmap, we see that drug-related incidents peaked sharply in 2009, with frequent daily activity especially during the spring and summer months. Over the years, incident counts began to decline and by 2018–2019, most days recorded little or no activity. This trend suggests a gradual shift in either public behavior, policing practices, or policy emphasis.
 
-Geographically, the folium heatmap shows that drug activity is not evenly distributed across the city. Instead, it clusters in specific neighborhoods — particularly the Tenderloin, Mission, Southern, and Bayview districts. These areas consistently show high densities of incidents across the 10-year span, indicating persistent hotspots.
+Geographically, the folium heatmap shows that drug activity is not evenly distributed across the city. Instead, it clusters in specific neighborhoods particularly the Tenderloin, Mission, Southern, and Bayview districts. These areas consistently show high densities of incidents across the 10-year span, indicating persistent hotspots.
 
 Finally, the interactive Bokeh chart reveals how drug-related incidents are highly concentrated in certain police districts, while other offenses such as assault are more evenly distributed. This contrast helps highlight how drug-related crime is shaped by spatial and perhaps socioeconomic dynamics that differ from other types of crime.
 
