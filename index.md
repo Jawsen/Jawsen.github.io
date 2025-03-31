@@ -52,8 +52,11 @@ This interactive chart lets you explore narcotics crimes by year and neighborhoo
 
 ## Conclusion
 
-Drug/narcotic-related crimes in San Francisco tend to cluster in specific neighborhoods and show clear time trends. With targeted action, policymakers can address the root causes more effectively.
+The data shows that drug-related crime was most widespread in 2009, especially during the spring and summer months. Since 2014, the number of incidents has steadily declined, with only a few cases observed in 2018–2019. This indicates a clear downward trend over time.
+
+Geographically, most incidents occur in specific areas such as Tenderloin, Mission, Southern, and Bayview. This suggests that, although the overall crime level has decreased, it remains concentrated in certain neighborhoods.
 
 ---
 
-_Created by Jawsen — Data source: San Francisco Open Data Portal_
+_Created by Jawahir, Alec and Aya— Data source: San Francisco Open Data Portal_
+
