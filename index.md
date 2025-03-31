@@ -47,7 +47,6 @@ To put drug-related crime in perspective, we looked at how it compares to anothe
 
 <iframe src="/assets/bokeh.html" width="100%" height="600" style="border:none;"></iframe>
 _Figure 3: Bokeh interactive chart comparing drug/narcotic and assault incidents by police district._
-
 What becomes clear is that drug-related incidents are highly concentrated in specific districts, particularly the Tenderloin while assault incidents are more evenly spread across the city. This difference highlights how certain neighborhoods may face unique challenges related to drug activity, while others experience broader patterns of violence or disorder. The persistent prominence of the Tenderloin in drug-related crime reinforces its role as a long-standing hotspot, potentially shaped by overlapping factors such as housing, public health infrastructure, and socioeconomic conditions.
 
 ---
