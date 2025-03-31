@@ -17,6 +17,7 @@ The dataset used in this analysis contains detailed records of crime incidents r
 ---
 
 ## Trend Over Time
+
 To begin understanding how narcotics-related incidents unfolded, we’ll first examine when they occurred. Did they spike in certain years? Was crime seasonal? The calendar heatmap below reveals these temporal dynamics.
 
 ![Calendar Heatmap of Drug/Narcotic Crime in SF](/assets/images/calendar_plot.png)
@@ -32,6 +33,7 @@ From 2014 onward, the green fades significantly. By 2018–2019, the calendar is
 ---
 
 ## Where Do These Crimes Occur?
+
 Beyond when they happen, it’s important to look at where these incidents take place. The following heatmap shows the physical distribution of drug-related crime across the city.
 
 Here’s a map showing the hotspots of drug/narcotic related-crime across San Francisco neighborhoods.
@@ -45,7 +47,7 @@ The geospatial heatmap visualizes the geographical distribution of drug/narcotic
 
 To put drug-related crime in perspective, we looked at how it compares to another common offense: assault. The chart below allows you to explore incident counts by police district and see how these two crime categories differ in their geographic distribution.
 
-<iframe src="/assets/bokeh.html" width="100%" height="600" style="border:none;"></iframe>
+<iframe src="/assets/bokeh.html" width="100%" height="500" style="border:none;"></iframe>
 _Figure 3: Bokeh interactive chart comparing drug/narcotic and assault incidents by police district._
 What becomes clear is that drug-related incidents are highly concentrated in specific districts, particularly the Tenderloin while assault incidents are more evenly spread across the city. This difference highlights how certain neighborhoods may face unique challenges related to drug activity, while others experience broader patterns of violence or disorder. The persistent prominence of the Tenderloin in drug-related crime reinforces its role as a long-standing hotspot, potentially shaped by overlapping factors such as housing, public health infrastructure, and socioeconomic conditions.
 
@@ -74,4 +76,3 @@ More importantly, the data offers a starting point for deeper inquiry. Why do ce
 ---
 
 _Created by Jawahir, Alec and Aya— Data source: San Francisco Open Data Portal_
-
