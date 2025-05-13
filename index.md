@@ -17,12 +17,12 @@ This site breaks down when fines are handed out, where they happen most, and wha
 Turns out, time really matters. Most tickets aren’t random — they spike around weekday mornings, especially during street cleaning hours. You’re a lot safer overnight.
 Below, you can explore when fines peak during the day and how it varies by borough.
 
-  <iframe src="/assets/violation_by_hour.html"></iframe>
+  <iframe src="/assets/violation_by_hour.html" width="100%" height="600" style="border:none;></iframe>
 
 _Figure 1: _
 
 
-  <iframe src="/assets/fines_by_hour_and_borough.html"></iframe>
+  <iframe src="/assets/fines_by_hour_and_borough.html" width="100%" height="600" style="border:none;></iframe>
 
 
 ---
