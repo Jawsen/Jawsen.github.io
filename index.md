@@ -2,13 +2,13 @@
 layout: default
 title: "Where and when do people get fined — and how can you avoid it?"
 ---
-
+<div class="full-width-section">
 # 🧭 Welcome — Let’s Talk Fines
 
 _Getting a fines in NYC sucks — but it happens a lot. Ever wondered when and where you're most likely to get one? We looked at thousands of real violations to figure out the patterns behind the fines.
 This site breaks down when fines are handed out, where they happen most, and what types of cars get hit the hardest — with interactive maps and charts you can explore yourself._
 
-<iframe src="/assets/parking_fines_map.html" width="100%" height="600" style="border:none;"></iframe>
+
 
 This shows how parking fines are spread across NYC — adjusted for population. Darker areas = more fines per 1,000 residents. Zoom around and hover to see which neighborhoods get fined the most.
 
@@ -43,19 +43,15 @@ Below, you can explore when fines peak during the day and how it varies by borou
 
 ---
 
-## Trend Over Time
+## 📍 Where Are the Hotspots?
 
-To begin understanding how narcotics-related incidents unfolded, we’ll first examine when they occurred. Did they spike in certain years? Was crime seasonal? The calendar heatmap below reveals these temporal dynamics.
+Some neighborhoods are way more ticket-heavy than others — and it’s not just about how many people live there.
+We adjusted for population to see which areas get the most fines per 1,000 residents. Scroll around the map to see how your neighborhood stacks up.
 
-![Calendar Heatmap of Drug/Narcotic Crime in SF](/assets/images/calendar_plot.png)
 
-_Figure 1: Calendar plot showing daily drug/narcotic incident frequency from 2009–2019 in San Francisco._
+<iframe src="/assets/parking_fines_map.html" width="100%" height="600" style="border:none;"></iframe>
 
-The calendar visualizes a detailed year-by-year overview of drug/narcotic-related incidents. Each row represents a calendar year, and each square represents a single day. Color intensity (shades of green) reflects the frequency of incidents, where darker green indicates higher crime counts.
 
-What stands out is the dense clustering of incidents in 2009, especially around early spring and summer. This suggests drug and narcotic related crime was not only more prevalent but also more consistent throughout the year.
-
-From 2014 onward, the green fades significantly. By 2018–2019, the calendar is mostly pale, a visual confirmation of the steady decline in drug/narcotic offenses over the decade.
 
 ---
 
@@ -104,3 +100,4 @@ More importantly, the data offers a starting point for deeper inquiry. Why do ce
 ---
 
 _Created by Jawahir, Alec and Aya— Data source: San Francisco Open Data Portal_
+</div>
