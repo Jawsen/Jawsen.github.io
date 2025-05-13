@@ -44,16 +44,16 @@ This shows how parking fines are spread across NYC — adjusted for population. 
 
 ---
 
-## Where Do These Crimes Occur?
+## 🚘 Who’s Getting Fined?
 
-Beyond when they happen, it’s important to look at where these incidents take place. The following heatmap shows the physical distribution of drug-related crime across the city.
+Are certain cars fined more than others? The short answer is: yes.
+Sedans, SUVs, and vans top the list - might be cause they're commen veichle types🧐 We also looked at the most fined car makes — and some violations are much more common for certain types of vehicles.
 
-Here’s a map showing the hotspots of drug/narcotic related-crime across San Francisco neighborhoods.
 
-<iframe src="/assets/interactive_map.html" width="100%" height="600" style="border:none;"></iframe>
-_Figure 2: Interactive heatmap showing the spatial distribution of drug/narcotic-related incidents across San Francisco neighborhoods._
+<iframe src="assets/top_vehicle_body_types.html" width="100%" height="600" style="border:none;"></iframe>
+<iframe src="assets/top_vehicle_makes.html" width="100%" height="600" style="border:none;"></iframe>
+<iframe src="assets/top_violations_by_body_type.html" width="100%" height="600" style="border:none;"></iframe>
 
-The geospatial heatmap visualizes the geographical distribution of drug/narcotic-related crimes in San Francisco. Areas with higher concentrations of incidents appear in warmer colors (yellow to green), while lower activity is shown in cooler tones (blue to purple). Because the map is citywide, specific hotspots may be difficult to distinguish at first glance but zooming in reveals clearer clusters of activity. Some of the most prominent hotspots emerge around the Tenderloin, Mission, Southern, and Bayview districts.
 
 ## Comparing Crime Across Neighborhoods
 
