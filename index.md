@@ -46,9 +46,9 @@ Sedans, SUVs, and vans top the list - might be cause they're common veichle type
 
 We also looked at the most fined car makes — and some violations are much more common for certain types of vehicles.
 
-JEG TROR JEG HAR DEN
+JEG TROR JEG HAR DEN NU
 
-<div style="width: 100%; display: flex; justify-content: start; padding-left: 5%;">
+<div style="width: 100%; display: flex; justify-content: start; padding-right: 10%;">
   <iframe src="/assets/combined_vehicles_chart.html"
           width="1200"
           height="600"
