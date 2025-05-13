@@ -47,22 +47,30 @@ This shows how parking fines are spread across NYC — adjusted for population. 
 ## 🚘 Who’s Getting Fined?
 
 Are certain cars fined more than others? The short answer is: yes.
-Sedans, SUVs, and vans top the list - might be cause they're commen veichle types🧐 We also looked at the most fined car makes — and some violations are much more common for certain types of vehicles.
+Sedans, SUVs, and vans top the list - might be cause they're common veichle types🧐 
 
+We also looked at the most fined car makes — and some violations are much more common for certain types of vehicles.
 
-<iframe src="assets/top_vehicle_body_types.html" width="100%" height="600" style="border:none;"></iframe>
 <iframe src="assets/top_vehicle_makes.html" width="100%" height="600" style="border:none;"></iframe>
+<iframe src="assets/top_vehicle_body_types.html" width="100%" height="600" style="border:none;"></iframe>
 <iframe src="assets/top_violations_by_body_type.html" width="100%" height="600" style="border:none;"></iframe>
 
 
-## Comparing Crime Across Neighborhoods
+## 🧠 Can We Predict Where You'll Get Fined?
 
-To put drug-related crime in perspective, we looked at how it compares to another common offense: assault. The chart below allows you to explore incident counts by police district and see how these two crime categories differ in their geographic distribution.
+We trained a simple machine learning model to see if we could predict which neighborhoods are high-risk for tickets — just based on population and total fines.
+It actually did pretty well, hitting 87% accuracy. The chart below shows what the model focused on most.
 
-<iframe src="/assets/bokeh.html" width="100%" height="500" style="border:none;"></iframe>
-_Figure 3: Bokeh interactive chart comparing drug/narcotic and assault incidents by police district._
+We also grouped neighborhoods into 3 clusters based on their population and fine rates. This helps us spot patterns — like which areas have lots of people but relatively fewer fines, and which ones get hit harder per person.
 
-What becomes clear is that drug-related incidents are highly concentrated in specific districts, particularly the Tenderloin while assault incidents are more evenly spread across the city. This difference highlights how certain neighborhoods may face unique challenges related to drug activity, while others experience broader patterns of violence or disorder. The persistent prominence of the Tenderloin in drug-related crime reinforces its role as a long-standing hotspot, potentially shaped by overlapping factors such as housing, public health infrastructure, and socioeconomic conditions.
+🟢 Cluster 0: Big population, moderate fines
+🟠 Cluster 1: Smaller areas, fewer fines
+🔴 Cluster 2: High fine rates per person — the real hotspots
+
+You can explore the map below to see which neighborhood falls into which group. Click around to see how NYC neighborhoods were grouped by fine patterns.
+
+
+<iframe src="assets/nta_clusters_map.html" width="100%" height="500" style="border:none;"></iframe>
 
 ---
 
