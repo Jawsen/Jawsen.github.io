@@ -34,7 +34,7 @@ If you’re hoping for a safer bet, here’s a little tip: **you’re a lot safe
 
 ### Weekdays vs. Weekends: Is There a Difference?
 
-While fines definitely peak during the week, especially on **Thursday and Friday**, the weekend sees a noticeable dip.It is  likely because fewer people are commuting and parking enforcement tends to relax a bit.
+While fines definitely peak during the week, especially on **Thursday and Friday**, the weekend sees a noticeable dip.It is likely because fewer people are commuting and parking enforcement tends to relax a bit.
 
 That being said, don’t let your guard down completely on weekends! In **tourist-heavy areas** like parts of Manhattan, parking violations can still add up, even on a Sunday. It’s all about knowing where you’re parking.
 
@@ -78,13 +78,10 @@ Sedans, SUVs, and vans top the list - might be cause they're common veichle type
 
 We also looked at the most fined car makes — and some violations are much more common for certain types of vehicles.
 
-
 <iframe src="/assets/combined_vehicles_chart.html" width="100%" height="600" style="border:none;" ></iframe>
 
-
-
-
 ---
+
 ## 🧠 Can We Predict Where You'll Get Fined?
 
 We trained a model to predict whether a neighborhood has a high fine rate or not, based on just two things: the total number of fines and population. The model was able to correctly classify neighborhoods about 87% of the time.
@@ -132,9 +129,8 @@ Use this interactive map to dive into the data yourself.
 📚 8. About This Project
 
 We made this for our final project in a data visualization course at DTU. The idea was to combine real-world data with visual storytelling and machine learning — all wrapped in a site that’s actually fun to use.
-Want to see the full analysis and code? View the explainer notebook here →
-
+Want to see the full analysis and code? View the explainer notebook [here](https://github.com/Ayafahim/NYC_parking).
 
 ---
 
-_Created by Jawahir, Alec and Aya— Data source: San Francisco Open Data Portal_
+\_Created by Jawahir, Alec and Aya—
