@@ -47,7 +47,7 @@ Sedans, SUVs, and vans top the list - might be cause they're common veichle type
 We also looked at the most fined car makes — and some violations are much more common for certain types of vehicles.
 
 
-!!!!!!!!
+HIIII
 
 <div style="text-align: center;">
   <iframe src="/assets/combined_vehicles_chart.html" 
@@ -56,10 +56,7 @@ We also looked at the most fined car makes — and some violations are much more
           style="border: none; display: inline-block;"></iframe>
 </div>
 
-
-
-
-
+---
 ## 🧠 Can We Predict Where You'll Get Fined?
 
 We trained a model to predict whether a neighborhood has a high fine rate or not, based on just two things: the total number of fines and population. The model was able to correctly classify neighborhoods about 87% of the time.
