@@ -104,14 +104,17 @@ You can explore the map below to see which neighborhood falls into which group. 
 ---
 
 ## 💡 Key Takeaways
+So, what’s the big picture here?
 
-So what did we learn from all this?
+🕒 Mornings are the most dangerous — especially if you’re parking during street cleaning hours. If you park early, be extra careful!
 
-- 🕒 Mornings are risky — especially during street cleaning.
-- 📍 Central areas like Manhattan, parts of Brooklyn and the Bronx get hit the hardest.
-- 🚗 Sedans and SUVs are fined the most.
-- 🧠 A basic model can already flag high-risk areas with solid accuracy.
-  Want to stay fine-free? Check the signs, know your neighborhood — and maybe don’t park in Manhattan at 9am on a Thursday 😅
+📍 Certain areas like Douglaston-Little Neck and Flushing-Willets Point are the hotspots for fines, while places like Canarsie and Lower East Side are a bit more relaxed.
+
+🚗 SUVs are the main culprits when it comes to getting fined, followed by 4-door sedans and vans. Looks like the cars we see most often are the ones getting the most tickets.
+
+🔮 Predictions work — if you know where the fines are most likely, you can avoid those areas. The map and data make it easy to spot high-risk zones.
+
+💡 Want to avoid a ticket? Make sure to check for street cleaning signs, choose neighborhoods with fewer fines, and maybe skip parking in Manhattan during rush hour on Thursday mornings.😅
 
 ---
 
