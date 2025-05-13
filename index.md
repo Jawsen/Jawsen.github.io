@@ -68,6 +68,7 @@ Here you can get a quick glimpse of thetop 10 most fined neighbourhoods.
 - **Safer Parking Zones**: If you're looking for areas with fewer fines, **Canarsie** and **Lower East Side** might be more relaxed about parking violations.
 
 By understanding where the hotspots are, you can avoid unnecessary parking fines and plan your parking habits accordingly.
+
 ---
 
 ## 🚘 Who’s Getting Fined?
