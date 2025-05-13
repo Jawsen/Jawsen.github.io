@@ -87,9 +87,9 @@ Take a look at the full breakdown below to see which car types are racking up th
 
 ## 🔮 Predicting Where Fines Are Most Likely
 
-We’ve already looked at when parking fines happen, but now let's zoom in on where they're most likely to occur. Some neighborhoods in New York City are more prone to parking fines than others. But it’s not just about the number of people living there; it’s about how fines are spread across different areas.
+We trained a model to predict whether a neighborhood has a high fine rate or not, based on just two things: the total number of fines and population. The model was able to correctly classify neighborhoods about 87% of the time.
 
-In this section, we predict which neighborhoods are most likely to see fines based on their population and parking patterns. Below is an interactive map where you can explore these predictions and see which areas get the most fines per person.
+We also grouped neighborhoods into 3 clusters based on their population and fine rates. This helps us spot patterns — like which areas have lots of people but relatively fewer fines, and which ones get hit harder per person.
 
 🟡 Big population, moderate fines
 
@@ -114,7 +114,7 @@ So, what’s the big picture here?
 
 🔮 Predictions work — if you know where the fines are most likely, you can avoid those areas. The map and data make it easy to spot high-risk zones.
 
-💡 Want to avoid a ticket? Make sure to check for street cleaning signs, choose neighborhoods with fewer fines, and maybe skip parking in Manhattan during rush hour on Thursday mornings.😅
+💡 Want to avoid a ticket? Make sure to check for street cleaning signs, choose neighborhoods with fewer fines, and maybe skip parking in Manhattan during rush hour on Thursday mornings😅
 
 ---
 
