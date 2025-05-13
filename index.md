@@ -5,7 +5,7 @@ title: "Where and when do people get fined — and how can you avoid it?"
 
 # 🧭 Welcome — Let’s Talk Fines
 
-_Getting a fines in NYC sucks — but it happens a lot. Ever wondered when and where you're most likely to get one? We looked at thousands of real violations to figure out the patterns behind the fines.
+_Getting fines in NYC sucks — but it happens a lot. Ever wondered when and where you're most likely to get one? We looked at thousands of real violations to figure out the patterns behind the fines.
 This site breaks down when fines are handed out, where they happen most, and what types of cars get hit the hardest — with interactive maps and charts you can explore yourself._
 
 ![New York City Skyline](/assets/images/NYC_skyline.png)
@@ -48,8 +48,7 @@ We also looked at the most fined car makes — and some violations are much more
 
 ## 🧠 Can We Predict Where You'll Get Fined?
 
-We trained a simple machine learning model to see if we could predict which neighborhoods are high-risk for tickets — just based on population and total fines.
-It actually did pretty well, hitting 87% accuracy. The chart below shows what the model focused on most.
+We trained a model to predict whether a neighborhood has a high fine rate or not, based on just two things: the total number of fines and population. The model was able to correctly classify neighborhoods about 87% of the time.
 
 We also grouped neighborhoods into 3 clusters based on their population and fine rates. This helps us spot patterns — like which areas have lots of people but relatively fewer fines, and which ones get hit harder per person.
 
@@ -77,13 +76,12 @@ So what did we learn from all this?
 
 ---
 
-## Conclusion
+## 🔎 7. Explore It Yourself
 
-Taken together, the data tells a story of concentrated but declining drug-related crime in San Francisco between 2009 and 2019. While the number of incidents has significantly decreased, especially after 2014, the geographic footprint of drug activity remains largely unchanged. The same neighborhoods continue to bear the brunt of narcotics-related crime, raising questions about the underlying structural and social factors at play.
+Curious about your own area? Want to see what kind of violations are common in your borough?
+Use this interactive map to dive into the data yourself.
+<iframe src="assets/nyc_parking_violations_hotspots_map.html" width="100%" height="500" style="border:none;"></iframe>
 
-This downward trend could reflect a range of influences: changes in public health policy, shifts in law enforcement priorities, or evolving community dynamics. However, without resolution or arrest data, we can't say whether these incidents resulted in enforcement actions or other interventions.
-
-More importantly, the data offers a starting point for deeper inquiry. Why do certain neighborhoods remain consistent hotspots? How might urban planning, housing, or public health services play a role? And how can policymakers ensure that the decline in incidents leads to lasting improvements for affected communities?
 
 ---
 
