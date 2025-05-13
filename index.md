@@ -51,7 +51,7 @@ So, next time you park, remember: timing matters. A little planning ahead can sa
 ## 📍 Where Are the Hotspots?
 
 Some neighborhoods are way more ticket-heavy than others — and it’s not just about how many people live there.
-We adjusted for population to see which areas get the most fines per 1,000 residents. Scroll around the map to see how your neighborhood stacks up.
+We adjusted for population to see which areas get the most fines per 1,000 residents. These are the hotspots you need to be aware of when you park in NYC. Scroll around the map to see how your neighborhood stacks up.
 
 This shows how parking fines are spread across NYC — adjusted for population. Darker areas = more fines per 1,000 residents. Zoom around and hover to see which neighborhoods get fined the most.
 
@@ -61,6 +61,13 @@ Here you can get a quick glimpse of thetop 10 most fined neighbourhoods.
 
 ![Top 10 neighbourhoods with most fines per 1000 residents](assets/images/top_10_neighborhoods_fines_per_1000.png)
 
+### What Does This Mean for You?
+
+- **Park Cautiously in High-Fine Areas**: If you’re in neighborhoods like **Douglaston-Little Neck** or **Flushing-Willets Point**, be extra cautious and check for street cleaning and other regulations.
+- **Know the Neighborhoods with Moderate Fines**: Areas like **Greenwich Village** and **College Point** have moderate fines. Be mindful of regulations, but the chances of getting fined are lower.
+- **Safer Parking Zones**: If you're looking for areas with fewer fines, **Canarsie** and **Lower East Side** might be more relaxed about parking violations.
+
+By understanding where the hotspots are, you can avoid unnecessary parking fines and plan your parking habits accordingly.
 ---
 
 ## 🚘 Who’s Getting Fined?
