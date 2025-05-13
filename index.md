@@ -17,13 +17,7 @@ This site breaks down when fines are handed out, where they happen most, and wha
 Turns out, time really matters. Most tickets aren’t random — they spike around weekday mornings, especially during street cleaning hours. You’re a lot safer overnight.
 Below, you can explore when fines peak during the day and how it varies by borough.
 
-
-  <div style="text-align: center; padding-right: 20%;">
-  <iframe src="/assets/violation_by_hour.html" 
-          width="1200px" 
-          height="600"  
-          style="border: none; display: inline-block;"></iframe>
-</div>
+  <iframe src="/assets/violation_by_hour.html" width="100%" height="600" style="border:none;" ></iframe>
   <iframe src="/assets/fines_by_hour_and_borough.html" width="100%" height="600" style="border:none;" ></iframe>
 
 ![Violation b weekday](assets/images/weekday_violations.png)
@@ -53,12 +47,8 @@ Sedans, SUVs, and vans top the list - might be cause they're common veichle type
 We also looked at the most fined car makes — and some violations are much more common for certain types of vehicles.
 
 
-<div style="text-align: center; padding-right: 50%;">
-  <iframe src="/assets/combined_vehicles_chart.html" 
-          width="1200px" 
-          height="600"  
-          style="border: none; display: inline-block;"></iframe>
-</div>
+<iframe src="/assets/combined_vehicles_chart.html" width="100%" height="600" style="border:none;" ></iframe>
+
 
 
 
@@ -100,7 +90,7 @@ Use this interactive map to dive into the data yourself.
 
 <div style="text-align: center; padding-right: 30%;">
   <iframe src="/assets/nyc_parking_violations_hotspots_map.html" 
-          width="1100px" 
+          width="1000px" 
           height="600"  
           style="border: none; display: inline-block;"></iframe>
 </div>
