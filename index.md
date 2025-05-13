@@ -1,9 +1,9 @@
 ---
 layout: default
-title: "Narcotics in San Francisco"
+title: "Where and when do people get fined — and how can you avoid it?"
 ---
 
-# Narcotics and Drug Use in San Francisco
+# 🧭 1. Welcome — Let’s Talk Fines
 
 _A data-driven story exploring drug/narcotic-related crime patterns in San Francisco._
 
