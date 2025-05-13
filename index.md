@@ -87,9 +87,11 @@ Take a look at the full breakdown below to see which car types are racking up th
 
 ## 🔮 Predicting Where Fines Are Most Likely
 
-We trained a model to predict whether a neighborhood has a high fine rate or not, based on just two things: the total number of fines and population. The model was able to correctly classify neighborhoods about 87% of the time.
+We trained a simple model to predict whether a neighborhood is likely to have a high rate of parking fines per resident, using just two factors: the total number of fines and the population. Surprisingly, that was enough for the model to correctly identify high-fine areas about 87% of the time.
 
-We also grouped neighborhoods into 3 clusters based on their population and fine rates. This helps us spot patterns — like which areas have lots of people but relatively fewer fines, and which ones get hit harder per person.
+But we didn’t stop there.
+
+To dig deeper into the patterns, we also used clustering to group neighborhoods into three categories based on fine volume and population. This gives a bigger picture view of how fines are distributed across the city, and reveals some interesting contrasts.
 
 🟡 Big population, moderate fines
 
@@ -97,7 +99,7 @@ We also grouped neighborhoods into 3 clusters based on their population and fine
 
 🟢 High fine rates per person — the real hotspots
 
-You can explore the map below to see which neighborhood falls into which group. Click around to see how NYC neighborhoods were grouped by fine patterns.
+Explore the map below to see which neighborhoods fall into each cluster — and what kind of fine risk they carry.
 
 <iframe src="assets/nta_clusters_map.html" width="100%" height="500" style="border:none;"></iframe>
 
