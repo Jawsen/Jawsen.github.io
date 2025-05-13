@@ -95,6 +95,12 @@ Use this interactive map to dive into the data yourself.
           style="border: none; display: inline-block;"></iframe>
 </div>
 
+---
+
+📚 8. About This Project
+
+We made this for our final project in a data visualization course at DTU. The idea was to combine real-world data with visual storytelling and machine learning — all wrapped in a site that’s actually fun to use.
+Want to see the full analysis and code? View the explainer notebook here →
 
 
 ---
