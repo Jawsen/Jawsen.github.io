@@ -17,7 +17,13 @@ This site breaks down when fines are handed out, where they happen most, and wha
 Turns out, time really matters. Most tickets aren’t random — they spike around weekday mornings, especially during street cleaning hours. You’re a lot safer overnight.
 Below, you can explore when fines peak during the day and how it varies by borough.
 
-  <iframe src="/assets/violation_by_hour.html" width="1200px" height="600" style="border:none;" ></iframe>
+
+  <div style="text-align: center; padding-left: 10%;">
+  <iframe src="/assets/violation_by_hour.html" 
+          width="1200px" 
+          height="600"  
+          style="border: none; display: inline-block;"></iframe>
+</div>
   <iframe src="/assets/fines_by_hour_and_borough.html" width="100%" height="600" style="border:none;" ></iframe>
 
 ![Violation b weekday](assets/images/weekday_violations.png)
@@ -46,15 +52,15 @@ Sedans, SUVs, and vans top the list - might be cause they're common veichle type
 
 We also looked at the most fined car makes — and some violations are much more common for certain types of vehicles.
 
-JEG TROR JEG HAR DEN NU
+DEN ER DER!!
 
-<div style="width: 100%; display: flex; justify-content: start; padding-right: 10%;">
-  <iframe src="/assets/combined_vehicles_chart.html"
-          width="1200"
-          height="600"
-          style="border: none;">
-  </iframe>
+<div style="text-align: center; padding-left: 10%;">
+  <iframe src="/assets/combined_vehicles_chart.html" 
+          width="1200px" 
+          height="600"  
+          style="border: none; display: inline-block;"></iframe>
 </div>
+
 
 
 ---
@@ -92,7 +98,14 @@ So what did we learn from all this?
 
 Curious about your own area? Want to see what kind of violations are common in your borough?
 Use this interactive map to dive into the data yourself.
-<iframe src="assets/nyc_parking_violations_hotspots_map.html" width="1100px" height="500" style="border:none;"></iframe>
+
+<div style="text-align: center; padding-left: 15%;">
+  <iframe src="/nyc_parking_violations_hotspots_map.html" 
+          width="1100px" 
+          height="600"  
+          style="border: none; display: inline-block;"></iframe>
+</div>
+
 
 
 ---
