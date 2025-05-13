@@ -18,7 +18,7 @@ Turns out, time really matters. Most tickets aren’t random — they spike arou
 Below, you can explore when fines peak during the day and how it varies by borough.
 
 
-  <div style="text-align: center; padding-left: 10%;">
+  <div style="text-align: center; padding-right: 10%;">
   <iframe src="/assets/violation_by_hour.html" 
           width="1200px" 
           height="600"  
@@ -54,7 +54,7 @@ We also looked at the most fined car makes — and some violations are much more
 
 DEN ER DER!!
 
-<div style="text-align: center; padding-left: 10%;">
+<div style="text-align: center; padding-right: 10%;">
   <iframe src="/assets/combined_vehicles_chart.html" 
           width="1200px" 
           height="600"  
@@ -99,8 +99,8 @@ So what did we learn from all this?
 Curious about your own area? Want to see what kind of violations are common in your borough?
 Use this interactive map to dive into the data yourself.
 
-<div style="text-align: center; padding-left: 15%;">
-  <iframe src="/nyc_parking_violations_hotspots_map.html" 
+<div style="text-align: center; padding-right: 15%;">
+  <iframe src="/assets/nyc_parking_violations_hotspots_map.html" 
           width="1100px" 
           height="600"  
           style="border: none; display: inline-block;"></iframe>
