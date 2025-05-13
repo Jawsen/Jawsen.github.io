@@ -49,12 +49,13 @@ We also looked at the most fined car makes — and some violations are much more
 
 !!!!!!!!
 
-<div style="display: flex; justify-content: center; overflow-x: auto;">
+<div style="text-align: center;">
   <iframe src="/assets/combined_vehicles_chart.html" 
-          width="1200" 
-          height="600" 
-          style="border: none;"></iframe>
+          width="1200px" 
+          height="600"  
+          style="border: none; display: inline-block;"></iframe>
 </div>
+
 
 
 
@@ -93,7 +94,7 @@ So what did we learn from all this?
 
 Curious about your own area? Want to see what kind of violations are common in your borough?
 Use this interactive map to dive into the data yourself.
-<iframe src="assets/nyc_parking_violations_hotspots_map.html" width="100%" height="500" style="border:none;"></iframe>
+<iframe src="assets/nyc_parking_violations_hotspots_map.html" width="1100px" height="500" style="border:none;"></iframe>
 
 
 ---
