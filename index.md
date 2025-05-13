@@ -133,4 +133,4 @@ Want to see the full analysis and code? View the explainer notebook [here](https
 
 ---
 
-\_Created by Jawahir, Alec and Aya—
+\_Created by Jawahir, Alec and Aya
