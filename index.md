@@ -19,7 +19,7 @@ This shows how parking fines are spread across NYC — adjusted for population. 
 Turns out, time really matters. Most tickets aren’t random — they spike around weekday mornings, especially during street cleaning hours. You’re a lot safer overnight.
 Below, you can explore when fines peak during the day and how it varies by borough.
 
-<iframe src="_site/assets/fines_by_hour_and_borough.html" width="100%" height="600" style="border:none;"></iframe>
+<iframe src="/assets/violation_by_hour.html" width="100%" height="600" style="border:none;"></iframe>
 
 
 ---
