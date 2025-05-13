@@ -3,16 +3,24 @@ layout: default
 title: "Where and when do people get fined — and how can you avoid it?"
 ---
 
-# 🧭 1. Welcome — Let’s Talk Fines
+# 🧭 Welcome — Let’s Talk Fines
 
-_A data-driven story exploring drug/narcotic-related crime patterns in San Francisco._
+_Getting a fines in NYC sucks — but it happens a lot. Ever wondered when and where you're most likely to get one? We looked at thousands of real violations to figure out the patterns behind the fines.
+This site breaks down when fines are handed out, where they happen most, and what types of cars get hit the hardest — with interactive maps and charts you can explore yourself._
+
+<iframe src="/assets/parking_fines_map.html" width="100%" height="600" style="border:none;"></iframe>
+
+This shows how parking fines are spread across NYC — adjusted for population. Darker areas = more fines per 1,000 residents. Zoom around and hover to see which neighborhoods get fined the most.
 
 ---
 
-## Introduction
+## 🕒 When Do People Get Fined?
 
-San Francisco has long struggled with drug/narcotic-related crimes. In this story, we are going to explore when and where these crimes occur and how trends have shifted over time. Our analysis will focuse on the period from 2009 to 2019.
-The dataset used in this analysis contains detailed records of crime incidents reported in San Francisco between 2009 and 2019. Each row represents a single crime incident and includes information such as the date and time of the incident, the type of crime, a short description, the day of the week it occurred, the police district it was reported in, and the geographic coordinates (latitude and longitude). The data was cleaned and filtered to focus on selected categories of crime in order to uncover meaningful patterns and trends across time and space. This dataset was originally sourced from the City of San Francisco’s open data portal and has been widely used for urban safety research and public policy analysis.
+Turns out, time really matters. Most tickets aren’t random — they spike around weekday mornings, especially during street cleaning hours. You’re a lot safer overnight.
+Below, you can explore when fines peak during the day and how it varies by borough.
+
+<iframe src="/assets/violation_by_hour.html" width="100%" height="600" style="border:none;"></iframe>
+
 
 ---
 
