@@ -20,8 +20,7 @@ Below, you can explore when fines peak during the day and how it varies by borou
   <iframe src="/assets/violation_by_hour.html" width="100%" height="600" style="border:none;" ></iframe>
   <iframe src="/assets/fines_by_hour_and_borough.html" width="100%" height="600" style="border:none;" ></iframe>
 
-  ![Violation b weekday](assets/images/weekday_violations.png)
-
+![Violation b weekday](assets/images/weekday_violations.png)
 
 ---
 
@@ -32,26 +31,20 @@ We adjusted for population to see which areas get the most fines per 1,000 resid
 
 ![Top 10 neighbourhoods with most fines per 1000 residents](assets/images/top_10_neighborhoods_fines_per_1000.png)
 
-
-
 <iframe src="/assets/parking_fines_map.html" width="100%" height="600" style="border:none;"></iframe>
 
 This shows how parking fines are spread across NYC — adjusted for population. Darker areas = more fines per 1,000 residents. Zoom around and hover to see which neighborhoods get fined the most.
-
-
 
 ---
 
 ## 🚘 Who’s Getting Fined?
 
 Are certain cars fined more than others? The short answer is: yes.
-Sedans, SUVs, and vans top the list - might be cause they're common veichle types🧐 
+Sedans, SUVs, and vans top the list - might be cause they're common veichle types🧐
 
 We also looked at the most fined car makes — and some violations are much more common for certain types of vehicles.
 
-<iframe src="assets/top_vehicle_makes.html" width="100%" height="600" style="border:none;"></iframe>
-<iframe src="assets/top_vehicle_body_types.html" width="100%" height="600" style="border:none;"></iframe>
-
+<iframe src="/assets/combined_vehicles_chart.html" width="100%" height="600" style="border:none;"></iframe>
 
 ## 🧠 Can We Predict Where You'll Get Fined?
 
@@ -68,7 +61,6 @@ We also grouped neighborhoods into 3 clusters based on their population and fine
 
 You can explore the map below to see which neighborhood falls into which group. Click around to see how NYC neighborhoods were grouped by fine patterns.
 
-
 <iframe src="assets/nta_clusters_map.html" width="100%" height="500" style="border:none;"></iframe>
 
 ---
@@ -76,12 +68,12 @@ You can explore the map below to see which neighborhood falls into which group. 
 ## 💡 Key Takeaways
 
 So what did we learn from all this?
-* 🕒 Mornings are risky — especially during street cleaning.
-* 📍 Central areas like Manhattan, parts of Brooklyn and the Bronx get hit the hardest.
-* 🚗 Sedans and SUVs are fined the most.
-* 🧠 A basic model can already flag high-risk areas with solid accuracy.
-Want to stay fine-free? Check the signs, know your neighborhood — and maybe don’t park in Manhattan at 9am on a Thursday 😅
 
+- 🕒 Mornings are risky — especially during street cleaning.
+- 📍 Central areas like Manhattan, parts of Brooklyn and the Bronx get hit the hardest.
+- 🚗 Sedans and SUVs are fined the most.
+- 🧠 A basic model can already flag high-risk areas with solid accuracy.
+  Want to stay fine-free? Check the signs, know your neighborhood — and maybe don’t park in Manhattan at 9am on a Thursday 😅
 
 ---
 
