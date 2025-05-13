@@ -49,12 +49,14 @@ We also looked at the most fined car makes — and some violations are much more
 
 HIIII
 
-<div style="text-align: center;">
-  <iframe src="/assets/combined_vehicles_chart.html" 
-          width="1200px" 
-          height="600"  
-          style="border: none; display: inline-block;"></iframe>
+<div style="display: flex; justify-content: center; overflow-x: auto;">
+  <iframe src="/assets/combined_vehicles_chart.html"
+          width="1200"
+          height="600"
+          style="border: none; min-width: 100%; max-width: 100%;">
+  </iframe>
 </div>
+
 
 ---
 ## 🧠 Can We Predict Where You'll Get Fined?
