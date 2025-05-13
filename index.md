@@ -73,26 +73,29 @@ By understanding where the hotspots are, you can avoid unnecessary parking fines
 
 ## 🚘 Who’s Getting Fined?
 
-Are certain cars fined more than others? The short answer is: yes.
-Sedans, SUVs, and vans top the list - might be cause they're common veichle types🧐
+Ever wondered if certain types of cars get fined more often than others? Well, it turns out, they do! The short answer is: yes. 🚗
 
-We also looked at the most fined car makes — and some violations are much more common for certain types of vehicles.
+It’s no surprise that sedans, SUVs, and vans top the list of most fined vehicles — probably because these are the cars you see everywhere. They're super common, which means they're more likely to end up in violation zones.
+
+We also took a look at the most fined car makes. And guess what? Some violations are way more common for certain types of cars. So, if you're driving a Honda or a Toyota, you might just be in the line of fire for more parking tickets than others!
+
+Take a look at the full breakdown below to see which car types are racking up those fines.
 
 <iframe src="/assets/combined_vehicles_chart.html" width="100%" height="600" style="border:none;" ></iframe>
 
 ---
 
-## 🧠 Can We Predict Where You'll Get Fined?
+## 🔮 Predicting Where Fines Are Most Likely
 
-We trained a model to predict whether a neighborhood has a high fine rate or not, based on just two things: the total number of fines and population. The model was able to correctly classify neighborhoods about 87% of the time.
+We’ve already looked at when parking fines happen, but now let's zoom in on where they're most likely to occur. Some neighborhoods in New York City are more prone to parking fines than others. But it’s not just about the number of people living there; it’s about how fines are spread across different areas.
 
-We also grouped neighborhoods into 3 clusters based on their population and fine rates. This helps us spot patterns — like which areas have lots of people but relatively fewer fines, and which ones get hit harder per person.
+In this section, we predict which neighborhoods are most likely to see fines based on their population and parking patterns. Below is an interactive map where you can explore these predictions and see which areas get the most fines per person.
 
-🟡 Cluster 0: Big population, moderate fines
+🟡 Big population, moderate fines
 
-🔵 Cluster 1: Smaller areas, fewer fines
+🔵 Smaller areas, fewer fines
 
-🟢 Cluster 2: High fine rates per person — the real hotspots
+🟢 High fine rates per person — the real hotspots
 
 You can explore the map below to see which neighborhood falls into which group. Click around to see how NYC neighborhoods were grouped by fine patterns.
 
