@@ -2,15 +2,13 @@
 layout: default
 title: "Where and when do people get fined — and how can you avoid it?"
 ---
-<div class="full-width-section">
+
 # 🧭 Welcome — Let’s Talk Fines
 
 _Getting a fines in NYC sucks — but it happens a lot. Ever wondered when and where you're most likely to get one? We looked at thousands of real violations to figure out the patterns behind the fines.
 This site breaks down when fines are handed out, where they happen most, and what types of cars get hit the hardest — with interactive maps and charts you can explore yourself._
 
-
-
-This shows how parking fines are spread across NYC — adjusted for population. Darker areas = more fines per 1,000 residents. Zoom around and hover to see which neighborhoods get fined the most.
+![New York City Skyline](/assets/images/NYC_skyline.png)
 
 ---
 
@@ -19,26 +17,8 @@ This shows how parking fines are spread across NYC — adjusted for population. 
 Turns out, time really matters. Most tickets aren’t random — they spike around weekday mornings, especially during street cleaning hours. You’re a lot safer overnight.
 Below, you can explore when fines peak during the day and how it varies by borough.
 
-<style>
-  .iframe-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-  }
-
-  .iframe-container iframe {
-    flex: 1 1 48%;
-    min-width: 300px;
-    height: 600px;
-    border: none;
-  }
-</style>
-
-<div class="iframe-container">
   <iframe src="/assets/violation_by_hour.html"></iframe>
   <iframe src="/assets/fines_by_hour_and_borough.html"></iframe>
-</div>
 
 
 ---
@@ -48,8 +28,13 @@ Below, you can explore when fines peak during the day and how it varies by borou
 Some neighborhoods are way more ticket-heavy than others — and it’s not just about how many people live there.
 We adjusted for population to see which areas get the most fines per 1,000 residents. Scroll around the map to see how your neighborhood stacks up.
 
+![Top 10 neighbourhoods with most fines per 1000 residents](assets/images/top_10_neighborhoods_fines_per_1000.png)
+
+
 
 <iframe src="/assets/parking_fines_map.html" width="100%" height="600" style="border:none;"></iframe>
+
+This shows how parking fines are spread across NYC — adjusted for population. Darker areas = more fines per 1,000 residents. Zoom around and hover to see which neighborhoods get fined the most.
 
 
 
@@ -100,4 +85,3 @@ More importantly, the data offers a starting point for deeper inquiry. Why do ce
 ---
 
 _Created by Jawahir, Alec and Aya— Data source: San Francisco Open Data Portal_
-</div>
