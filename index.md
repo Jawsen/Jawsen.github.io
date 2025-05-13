@@ -73,7 +73,7 @@ By understanding where the hotspots are, you can avoid unnecessary parking fines
 
 ## 🚘 Who’s Getting Fined?
 
-Ever wondered if certain types of cars get fined more often than others? Well, it turns out, they do! The short answer is: yes. 🚗
+Ever wondered if certain types of cars get fined more often than others? The short answer is: yes. 🚗
 
 It’s no surprise that sedans, SUVs, and vans top the list of most fined vehicles — probably because these are the cars you see everywhere. They're super common, which means they're more likely to end up in violation zones.
 
