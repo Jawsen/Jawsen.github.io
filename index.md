@@ -24,6 +24,8 @@ _Figure 1: _
 
   <iframe src="/assets/fines_by_hour_and_borough.html" width="100%" height="600" style="border:none;" ></iframe>
 
+  ![Violation b weekday](assets/images/weekday_violations.png)
+
 
 ---
 
@@ -53,7 +55,6 @@ We also looked at the most fined car makes — and some violations are much more
 
 <iframe src="assets/top_vehicle_makes.html" width="100%" height="600" style="border:none;"></iframe>
 <iframe src="assets/top_vehicle_body_types.html" width="100%" height="600" style="border:none;"></iframe>
-<iframe src="assets/top_violations_by_body_type.html" width="100%" height="600" style="border:none;"></iframe>
 
 
 ## 🧠 Can We Predict Where You'll Get Fined?
@@ -63,9 +64,11 @@ It actually did pretty well, hitting 87% accuracy. The chart below shows what th
 
 We also grouped neighborhoods into 3 clusters based on their population and fine rates. This helps us spot patterns — like which areas have lots of people but relatively fewer fines, and which ones get hit harder per person.
 
-🟢 Cluster 0: Big population, moderate fines
-🟠 Cluster 1: Smaller areas, fewer fines
-🔴 Cluster 2: High fine rates per person — the real hotspots
+🟡 Cluster 0: Big population, moderate fines
+
+🔵 Cluster 1: Smaller areas, fewer fines
+
+🟢 Cluster 2: High fine rates per person — the real hotspots
 
 You can explore the map below to see which neighborhood falls into which group. Click around to see how NYC neighborhoods were grouped by fine patterns.
 
@@ -74,15 +77,15 @@ You can explore the map below to see which neighborhood falls into which group. 
 
 ---
 
-## Findings
+## 💡 Key Takeaways
 
-The visualizations reveal a clear temporal and spatial pattern in drug/narcotic-related crime across San Francisco.
+So what did we learn from all this?
+* 🕒 Mornings are risky — especially during street cleaning.
+* 📍 Central areas like Manhattan, parts of Brooklyn and the Bronx get hit the hardest.
+* 🚗 Sedans and SUVs are fined the most.
+* 🧠 A basic model can already flag high-risk areas with solid accuracy.
+Want to stay fine-free? Check the signs, know your neighborhood — and maybe don’t park in Manhattan at 9am on a Thursday 😅
 
-In the calendar heatmap, we see that drug-related incidents peaked sharply in 2009, with frequent daily activity especially during the spring and summer months. Over the years, incident counts began to decline and by 2018–2019, most days recorded little or no activity. This trend suggests a gradual shift in either public behavior, policing practices, or policy emphasis.
-
-Geographically, the folium heatmap shows that drug activity is not evenly distributed across the city. Instead, it clusters in specific neighborhoods particularly the Tenderloin, Mission, Southern, and Bayview districts. These areas consistently show high densities of incidents across the 10-year span, indicating persistent hotspots.
-
-Finally, the interactive Bokeh chart reveals how drug-related incidents are highly concentrated in certain police districts, while other offenses such as assault are more evenly distributed. This contrast helps highlight how drug-related crime is shaped by spatial and perhaps socioeconomic dynamics that differ from other types of crime.
 
 ---
 
