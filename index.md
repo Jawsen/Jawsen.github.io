@@ -5,7 +5,7 @@ title: "Where and when do people get fined — and how can you avoid it?"
 
 # 🧭 Welcome — Let’s Talk Fines
 
-_Getting fines in NYC sucks — but it happens a lot. Ever wondered when and where you're most likely to get one? We looked at thousands of real violations to figure out the patterns behind the fines.
+_Getting fines in NYC sucks - but it happens a lot. Ever wondered when and where you're most likely to get one? We looked at thousands of real violations to figure out the patterns behind the fines.
 This site breaks down when fines are handed out, where they happen most, and what types of cars get hit the hardest — with interactive maps and charts you can explore yourself._
 
 ![New York City Skyline](/assets/images/NYC_skyline.png)
@@ -15,12 +15,36 @@ This site breaks down when fines are handed out, where they happen most, and wha
 ## 🕒 When Do People Get Fined?
 
 Turns out, time really matters. Most tickets aren’t random — they spike around weekday mornings, especially during street cleaning hours. You’re a lot safer overnight.
-Below, you can explore when fines peak during the day and how it varies by borough.
+Below, you can explore when fines peak during the day and how it varies.
 
   <iframe src="/assets/violation_by_hour.html" width="100%" height="600" style="border:none;" ></iframe>
   <iframe src="/assets/fines_by_hour_and_borough.html" width="100%" height="600" style="border:none;" ></iframe>
 
 ![Violation b weekday](assets/images/weekday_violations.png)
+
+### So, When Are Fines at Their Worst?
+
+It’s pretty clear from the graphs above: **weekday mornings** — especially between **8 AM and 10 AM** — are when fines are at their peak. Why? **Street cleaning!** This is the time when most of the parking violations happen, and it’s not surprising. We’re all busy in the morning, rushing to get to work, and sometimes we overlook those annoying street cleaning signs.
+
+If you’re the type who likes to comute to work by car, **double-check the signs** before leaving your car. The fines come quick when street cleaning is in full swing!
+
+### But What About Overnight?
+
+If you’re hoping for a safer bet, here’s a little tip: **you’re a lot safer at night**. As the night settles in, fines drop significantly. This makes sense — fewer people are out and about, and street cleaning usually slows down after late hours. So, if you’re planning to park overnight, you're likely in the clear, especially if it's after **10 PM**.
+
+### Weekdays vs. Weekends: Is There a Difference?
+
+While fines definitely peak during the week, especially on **Thursday and Friday**, the weekend sees a noticeable dip.It is  likely because fewer people are commuting and parking enforcement tends to relax a bit.
+
+That being said, don’t let your guard down completely on weekends! In **tourist-heavy areas** like parts of Manhattan, parking violations can still add up, even on a Sunday. It’s all about knowing where you’re parking.
+
+### What This Means for You
+
+- **Street Cleaning? Avoid It**: If you’re parking in the morning, be extra cautious about street cleaning. If you see a sign, **don’t risk it**!
+- **Go for Overnight Parking**: For a stress-free experience, use car to commute and park after dark. It’s safer, and you’ll avoid the early morning rush.
+- **Know the Hotspots**: Some Borough, especially around downtown, have stricter rules. Stay informed about the areas you frequent visit to avoid fines.
+
+So, next time you park, remember: timing matters. A little planning ahead can save you from that dreaded parking ticket!
 
 ---
 
