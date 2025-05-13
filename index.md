@@ -37,8 +37,6 @@ Here you can get a quick glimpse of thetop 10 most fined neighbourhoods.
 
 ![Top 10 neighbourhoods with most fines per 1000 residents](assets/images/top_10_neighborhoods_fines_per_1000.png)
 
-
-
 ---
 
 ## 🚘 Who’s Getting Fined?
@@ -49,6 +47,7 @@ Sedans, SUVs, and vans top the list - might be cause they're common veichle type
 We also looked at the most fined car makes — and some violations are much more common for certain types of vehicles.
 
 <iframe src="/assets/combined_vehicles_chart.html" width="100%" height="600" style="border:none;"></iframe>
+
 
 ## 🧠 Can We Predict Where You'll Get Fined?
 
