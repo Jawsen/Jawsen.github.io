@@ -1,27 +1,268 @@
+<!doctype html>
+<html>
 <head>
   <meta charset="utf-8" />
-  <title>jsPsych test (module)</title>
+  <title>Time-Pressured Risk Choices (Module Build)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://unpkg.com/jspsych@7.3.3/css/jspsych.css" />
+  <style>
+    body { max-width: 900px; margin: 0 auto; }
+    .option-card { border: 1px solid #ddd; border-radius: 10px; padding: 12px; margin: 8px 0; }
+    .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .small { font-size: 0.9rem; color: #555; }
+    .progressbar { height: 6px; background: #eee; border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
+    .progress { height: 100%; width: 0; transition: width 0.05s linear; }
+  </style>
 </head>
 <body>
   <div id="jspsych-target"></div>
 
+  <!-- ES MODULES: core + plugins -->
   <script type="module">
+    /*************** IMPORTS ***************/
     import jsPsychModule from "https://unpkg.com/jspsych@7.3.3/dist/index.js";
     const { initJsPsych } = jsPsychModule;
 
-    import jsPsychHtmlButtonResponse from "https://unpkg.com/@jspsych/plugin-html-button-response@1.2.0";
-    import jsPsychInstructions from "https://unpkg.com/@jspsych/plugin-instructions@1.2.0";
+    import jsPsychHtmlButtonResponse from "https://unpkg.com/@jspsych/plugin-html-button-response@1.2.0/dist/index.js";
+    import jsPsychInstructions from "https://unpkg.com/@jspsych/plugin-instructions@1.2.0/dist/index.js";
+    import jsPsychSurveyMultiChoice from "https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.3.0/dist/index.js";
+    import jsPsychSurveyText from "https://unpkg.com/@jspsych/plugin-survey-text@1.3.0/dist/index.js";
 
+    /*************** QUICK TEST (should show a button) ***************/
     const jsPsych = initJsPsych({ display_element: 'jspsych-target' });
-
     const hello = {
       type: jsPsychHtmlButtonResponse,
-      stimulus: "<p>Hello jsPsych (module)!</p>",
-      choices: ["Continue"]
+      stimulus: "<p>Hello jsPsych (module build)!</p>",
+      choices: ["Start experiment"]
     };
 
-    jsPsych.run([hello]);
+    /*************** FULL EXPERIMENT ***************/
+    const TIME_LIMIT_MS = 3000; // timed trials
+    const COMPREHENSION_PASS = 5; // min 5/8
+
+    // Opportunity-cost items (risky = forgo sure benefit if fail)
+    const ITEMS = [
+      {id:1, rarity:"rare", domain:"travel", scenario:"You can choose a guaranteed local travel voucher or enter a raffle for an international trip.", safe_option:"Take a guaranteed travel voucher worth 2,000 kr", risky_option:"Enter a raffle with a 1% chance to win an international trip worth 200,000 kr", p_success:0.01, risky_success_benefit:"Win the international trip", risky_fail_outcome:"Win nothing (you forgo the voucher)", safe_benefit:"Receive 2,000 kr travel voucher for sure"},
+      {id:2, rarity:"rare", domain:"health", scenario:"You can take a treatment that guarantees moderate symptom relief or try a new treatment that might fully cure you.", safe_option:"Take the standard treatment (guaranteed moderate relief)", risky_option:"Try the new treatment with a 5% chance of full cure", p_success:0.05, risky_success_benefit:"Full cure", risky_fail_outcome:"No additional improvement (you forgo guaranteed moderate relief)", safe_benefit:"Moderate symptom relief for sure"},
+      {id:3, rarity:"rare", domain:"career", scenario:"You can accept a guaranteed small training grant or apply for an elite fellowship.", safe_option:"Accept a guaranteed 5,000 kr training grant", risky_option:"Apply to an elite fellowship with a 5% chance to receive 100,000 kr for career development", p_success:0.05, risky_success_benefit:"100,000 kr fellowship", risky_fail_outcome:"Receive nothing (you forgo the 5,000 kr grant)", safe_benefit:"Receive 5,000 kr for sure"},
+      {id:4, rarity:"rare", domain:"social/career", scenario:"You can accept a guaranteed small audience slot or audition for a major showcase.", safe_option:"Guaranteed minor showcase slot with modest exposure", risky_option:"Audition for a major showcase with a 2% chance of high exposure", p_success:0.02, risky_success_benefit:"Major showcase and high exposure", risky_fail_outcome:"No slot (you forgo the minor slot)", safe_benefit:"Modest exposure for sure"},
+      {id:5, rarity:"rare", domain:"everyday", scenario:"You can take a guaranteed small time-saving route or a shortcut that rarely saves a lot of time.", safe_option:"Take a route that reliably saves 3 minutes", risky_option:"Take a shortcut with a 10% chance to save 20 minutes", p_success:0.10, risky_success_benefit:"Save 20 minutes", risky_fail_outcome:"Save no time (you forgo the 3-minute saving)", safe_benefit:"Save 3 minutes for sure"},
+      {id:6, rarity:"rare", domain:"learning", scenario:"You can accept a guaranteed small bonus point or attempt a tough bonus question.", safe_option:"Take 2 bonus points for sure", risky_option:"Attempt a tough bonus question with a 10% chance to earn 20 bonus points", p_success:0.10, risky_success_benefit:"Earn 20 bonus points", risky_fail_outcome:"Earn 0 bonus points (you forgo the 2 points)", safe_benefit:"Earn 2 points for sure"},
+      {id:7, rarity:"rare", domain:"tech", scenario:"You can accept a guaranteed small productivity boost or try a beta tool that could boost productivity a lot.", safe_option:"Use a stable tool that guarantees a small productivity boost", risky_option:"Use a beta tool with an 8% chance of a large productivity boost", p_success:0.08, risky_success_benefit:"Large productivity boost", risky_fail_outcome:"No extra boost (you forgo the small boost)", safe_benefit:"Small productivity boost for sure"},
+      {id:8, rarity:"rare", domain:"shopping", scenario:"You can accept a guaranteed small discount or enter a draw for a large store credit.", safe_option:"Take a guaranteed 50 kr discount", risky_option:"Enter a draw with a 4% chance to win a 1,000 kr store credit", p_success:0.04, risky_success_benefit:"Win 1,000 kr store credit", risky_fail_outcome:"Win nothing (you forgo the 50 kr discount)", safe_benefit:"Receive 50 kr discount for sure"},
+      {id:9, rarity:"rare", domain:"study/work", scenario:"You can accept a guaranteed modest grade bump or attempt an extra project that could boost your grade a lot.", safe_option:"Accept a guaranteed +1% grade bump", risky_option:"Attempt an extra project with a 5% chance of +10% grade bump", p_success:0.05, risky_success_benefit:"Gain +10% to grade", risky_fail_outcome:"Gain 0% (you forgo the +1%)", safe_benefit:"Gain +1% for sure"},
+      {id:10, rarity:"rare", domain:"finance", scenario:"You can take a guaranteed small cash amount or buy a ticket for a large prize.", safe_option:"Take 20 kr for sure", risky_option:"Buy a ticket with a 1% chance to win 2,000 kr (the ticket itself is free for you)", p_success:0.01, risky_success_benefit:"Win 2,000 kr", risky_fail_outcome:"Win nothing (you forgo the 20 kr)", safe_benefit:"Receive 20 kr for sure"},
+
+      {id:11, rarity:"common", domain:"finance", scenario:"You can take a guaranteed small cash amount or flip a coin for a higher amount.", safe_option:"Take 10 kr for sure", risky_option:"Flip a coin with a 50% chance to win 20 kr", p_success:0.50, risky_success_benefit:"Win 20 kr", risky_fail_outcome:"Win nothing (you forgo the 10 kr)", safe_benefit:"Receive 10 kr for sure"},
+      {id:12, rarity:"common", domain:"appointment", scenario:"You can leave now and be modestly comfortable for sure, or stop by the restroom and likely still be on time.", safe_option:"Leave now: guaranteed modest comfort during the appointment", risky_option:"Use the restroom with a 70% chance of being on time and fully comfortable", p_success:0.70, risky_success_benefit:"On time and fully comfortable", risky_fail_outcome:"Arrive a few minutes late (you forgo guaranteed modest comfort)", safe_benefit:"Guaranteed modest comfort"},
+      {id:13, rarity:"common", domain:"learning", scenario:"You can accept a guaranteed small hint or attempt a quick challenge for a bigger hint.", safe_option:"Take a guaranteed small hint", risky_option:"Attempt a quick challenge with a 70% chance of earning a big hint", p_success:0.70, risky_success_benefit:"Receive a big hint", risky_fail_outcome:"Receive no hint (you forgo the small hint)", safe_benefit:"Receive a small hint for sure"},
+      {id:14, rarity:"common", domain:"work", scenario:"You can schedule a guaranteed short 1:1 with your supervisor or send a message that usually resolves the issue faster.", safe_option:"Schedule a guaranteed short 1:1 next day", risky_option:"Send a message with an 80% chance of same-day resolution", p_success:0.80, risky_success_benefit:"Same-day resolution", risky_fail_outcome:"No resolution today (you forgo the guaranteed 1:1)", safe_benefit:"1:1 meeting for sure"},
+      {id:15, rarity:"common", domain:"phone/bus", scenario:"You can leave now with a guaranteed low battery or charge briefly and likely still catch the bus.", safe_option:"Leave now: guaranteed arrival with low battery", risky_option:"Charge 3 minutes with a 65% chance of catching the bus and having more battery", p_success:0.65, risky_success_benefit:"Catch the bus with more battery", risky_fail_outcome:"Miss the bus (you forgo guaranteed arrival)", safe_benefit:"Guaranteed arrival (low battery)"},
+      {id:16, rarity:"common", domain:"gym", scenario:"You can rest today and feel somewhat better for sure, or go to the gym which usually feels great.", safe_option:"Rest today: guaranteed mild recovery", risky_option:"Go to the gym with a 70% chance of feeling great afterwards", p_success:0.70, risky_success_benefit:"Feel great after the workout", risky_fail_outcome:"No extra benefit (you forgo mild recovery)", safe_benefit:"Mild recovery for sure"},
+      {id:17, rarity:"common", domain:"work/study", scenario:"You can submit now for a guaranteed small bonus, or do a quick check that usually catches errors for a bigger bonus.", safe_option:"Submit now: guaranteed +1 point", risky_option:"Do a quick check with an 80% chance to earn +3 points", p_success:0.80, risky_success_benefit:"Earn +3 points", risky_fail_outcome:"Earn 0 points (you forgo the +1 point)", safe_benefit:"Earn +1 point for sure"},
+      {id:18, rarity:"common", domain:"group project", scenario:"You can accept a guaranteed small credit for your part, or speak up which usually leads to higher credit.", safe_option:"Accept guaranteed small individual credit", risky_option:"Speak up with an 85% chance of higher team credit", p_success:0.85, risky_success_benefit:"Higher team credit", risky_fail_outcome:"No additional credit (you forgo the guaranteed small credit)", safe_benefit:"Small credit for sure"},
+      {id:19, rarity:"common", domain:"finance", scenario:"You can take a guaranteed small cash amount or flip a coin for a higher amount.", safe_option:"Take 15 kr for sure", risky_option:"Flip a coin with a 50% chance to win 30 kr", p_success:0.50, risky_success_benefit:"Win 30 kr", risky_fail_outcome:"Win nothing (you forgo the 15 kr)", safe_benefit:"Receive 15 kr for sure"},
+      {id:20, rarity:"common", domain:"shopping", scenario:"You can accept a guaranteed small discount or choose a delivery option that usually yields a bigger discount.", safe_option:"Take a guaranteed 30 kr discount", risky_option:"Choose promo delivery with an 80% chance of a 60 kr discount", p_success:0.80, risky_success_benefit:"Receive a 60 kr discount", risky_fail_outcome:"Receive no discount (you forgo the 30 kr)", safe_benefit:"Receive 30 kr discount for sure"}
+    ];
+
+    const shuffle = arr => arr.map(v=>({v, r:Math.random()})).sort((a,b)=>a.r-b.r).map(({v})=>v);
+
+    function splitIntoTimedNoTime(items){
+      const rares = items.filter(x=>x.rarity==='rare');
+      const commons = items.filter(x=>x.rarity==='common');
+      const halfR = Math.floor(rares.length/2);
+      const halfC = Math.floor(commons.length/2);
+      const raresShuf = shuffle(rares);
+      const commonsShuf = shuffle(commons);
+      return {
+        timed: raresShuf.slice(0,halfR).concat(commonsShuf.slice(0,halfC)),
+        notimed: raresShuf.slice(halfR).concat(commonsShuf.slice(halfC))
+      };
+    }
+
+    function makeTrialFromItem(item, timed){
+      const leftIsRisky = Math.random() < 0.5;
+      const left = leftIsRisky ? 'risky' : 'safe';
+      const right = leftIsRisky ? 'safe' : 'risky';
+
+      const leftHTML = `<div class="option-card"><strong>${left==='risky'?'RISKY':'SAFE'}</strong><br>${left==='risky'?item.risky_option:item.safe_option}<div class="small">${left==='risky' ? `If it succeeds: ${item.risky_success_benefit}. If it fails: ${item.risky_fail_outcome}.` : `${item.safe_benefit}.`}</div></div>`;
+      const rightHTML = `<div class="option-card"><strong>${right==='risky'?'RISKY':'SAFE'}</strong><br>${right==='risky'?item.risky_option:item.safe_option}<div class="small">${right==='risky' ? `If it succeeds: ${item.risky_success_benefit}. If it fails: ${item.risky_fail_outcome}.` : `${item.safe_benefit}.`}</div></div>`;
+
+      const pb = timed ? '<div class="progressbar"><div class="progress" id="bar"></div></div>' : '';
+      const containerHTML = `
+        ${pb}
+        <div class="small">Scenario ${item.id} — ${item.domain} — ${item.rarity.toUpperCase()} ${timed?"(TIMED)":"(NO-TIME)"}</div>
+        <p>${item.scenario}</p>
+        <div class="twocol">
+          <div>${leftHTML}</div>
+          <div>${rightHTML}</div>
+        </div>`;
+
+      return {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: containerHTML,
+        choices: [left==='risky'?"Choose RISKY":"Choose SAFE", right==='risky'?"Choose RISKY":"Choose SAFE"],
+        trial_duration: timed ? TIME_LIMIT_MS : null,
+        on_load: () => {
+          if(timed){
+            const bar = document.getElementById('bar');
+            if(bar){
+              const start = performance.now();
+              const step = () => {
+                const t = performance.now() - start;
+                const pct = Math.min(100, (t / TIME_LIMIT_MS) * 100);
+                bar.style.width = pct + '%';
+                if(pct < 100) requestAnimationFrame(step);
+              };
+              requestAnimationFrame(step);
+            }
+          }
+        },
+        on_finish: (data) => {
+          const choiceIndex = data.response;
+          let chosen_type = null;
+          if(choiceIndex === 0) chosen_type = left; else if(choiceIndex === 1) chosen_type = right;
+          data.item_id = item.id;
+          data.rarity = item.rarity;
+          data.domain = item.domain;
+          data.p_success = item.p_success;
+          data.timed = timed;
+          data.left_type = left;
+          data.right_type = right;
+          data.chosen_type = chosen_type;
+          data.miss = (choiceIndex === null || choiceIndex === undefined);
+        }
+      };
+    }
+
+    const welcome = {
+      type: jsPsychInstructions,
+      pages: [
+        `<h2>Welcome</h2>
+         <p>You will choose between a <strong>safe</strong> option (guaranteed benefit) and a <strong>risky</strong> option (larger potential benefit with some chance of getting nothing).</p>
+         <p>Some trials are under <strong>time pressure (~3 seconds)</strong>; others have <strong>no time limit</strong>. If time runs out on a timed trial, it counts as a missed response and we move on.</p>
+         <p>Your responses are anonymous and used for research. You can stop at any time.</p>`
+      ],
+      show_clickable_nav: true
+    };
+
+    const demographics = {
+      type: jsPsychSurveyText,
+      questions: [
+        {prompt: 'Age (years):', required: true},
+        {prompt: 'Gender (optional):', required: false}
+      ],
+      on_finish: (data) => {
+        const resp = JSON.parse(data.responses);
+        data.age = parseInt(resp["Q0"], 10);
+        data.gender = resp["Q1"] || '';
+      }
+    };
+
+    const age_gate = {
+      timeline: [
+        {
+          type: jsPsychHtmlButtonResponse,
+          stimulus: () => {
+            const last = jsPsych.data.get().last(1).values()[0];
+            const age = last.age;
+            if(isNaN(age)) return '<p>Please enter a valid age to continue.</p>';
+            if(age < 18 || age > 55){
+              return `<h3>Thank you</h3><p>Our study includes participants aged 18–55. Your age was recorded as <strong>${age}</strong>, so you are not eligible. This session will now end.</p>`;
+            }
+            return '<p>Age verified (18–55). Click continue.</p>';
+          },
+          choices: ['Continue']
+        }
+      ],
+      conditional_function: () => {
+        const last = jsPsych.data.get().last(1).values()[0];
+        const age = last.age;
+        return !(isNaN(age) || age < 18 || age > 55);
+      }
+    };
+
+    const comp_check = {
+      type: jsPsychSurveyMultiChoice,
+      preamble: '<h3>Quick check</h3><p>Please answer a few questions about the task.</p>',
+      questions: [
+        {prompt: 'Which option guarantees a benefit?', options:['Risky','Safe'], required:true, name:'q1'}, // weight 2
+        {prompt: 'About how long are timed trials?', options:['~1 second','~3 seconds','~10 seconds'], required:true, name:'q2'}, // weight 2
+        {prompt: 'In rare trials, are chances small or large?', options:['Small','Large'], required:true, name:'q3'}, // weight 1
+        {prompt: 'If you run out of time on a timed trial, what happens?', options:['We wait for your answer','It counts as a miss and we move on'], required:true, name:'q4'} // weight 3
+      ],
+      on_finish: (data) => {
+        const r = JSON.parse(data.responses);
+        let score = 0;
+        if(r.q1==='Safe') score+=2;
+        if(r.q2==='~3 seconds') score+=2;
+        if(r.q3==='Small') score+=1;
+        if(r.q4==='It counts as a miss and we move on') score+=3;
+        data.comp_score = score; // max 8
+      }
+    };
+
+    const comp_gate = {
+      timeline: [
+        { type: jsPsychHtmlButtonResponse, stimulus: () => {
+            const s = jsPsych.data.get().filter({trial_type:'survey-multi-choice'}).last(1).values()[0].comp_score;
+            return `<p>Your comprehension score is <strong>${s}/8</strong>. Click to continue.</p>`;
+          }, choices:['Continue'] }
+      ],
+      conditional_function: () => {
+        const s = jsPsych.data.get().filter({trial_type:'survey-multi-choice'}).last(1).values()[0].comp_score;
+        return s >= COMPREHENSION_PASS;
+      }
+    };
+
+    const comp_fail = {
+      timeline: [
+        { type: jsPsychHtmlButtonResponse, stimulus: () => {
+            const s = jsPsych.data.get().filter({trial_type:'survey-multi-choice'}).last(1).values()[0].comp_score;
+            return `<h3>Thanks!</h3><p>Your comprehension score was <strong>${s}/8</strong>. For data quality we only include participants scoring ${COMPREHENSION_PASS}+.</p>`;
+          }, choices:['Finish'] }
+      ],
+      conditional_function: () => {
+        const s = jsPsych.data.get().filter({trial_type:'survey-multi-choice'}).last(1).values()[0].comp_score;
+        return s < COMPREHENSION_PASS;
+      }
+    };
+
+    const split = splitIntoTimedNoTime(shuffle(ITEMS));
+    const timedTrials   = shuffle(split.timed).map(it => makeTrialFromItem(it, true));
+    const notimedTrials = shuffle(split.notimed).map(it => makeTrialFromItem(it, false));
+
+    const blockIntro = (label) => ({
+      type: jsPsychInstructions,
+      pages: [ `<h3>${label} block</h3><p>${label==='TIMED' ? 'You have ~3 seconds per trial. If time runs out, it is recorded as a miss.' : 'No time limit, but please respond promptly.'}</p>` ],
+      show_clickable_nav: true
+    });
+
+    const blocks = Math.random() < 0.5
+      ? [{label:'TIMED', trials: timedTrials}, {label:'NO-TIME', trials: notimedTrials}]
+      : [{label:'NO-TIME', trials: notimedTrials}, {label:'TIMED', trials: timedTrials}];
+
+    const debrief = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: '<h3>All done!</h3><p>Thank you for participating.</p><p>You can download your anonymous responses as a CSV for analysis.</p>',
+      choices: ['Download CSV'] ,
+      on_finish: () => {
+        const subject_id = Math.random().toString(36).slice(2,10);
+        jsPsych.data.get().addToAll({subject_id}).localSave('csv', 'risk_time_choices_'+subject_id+'.csv');
+      }
+    };
+
+    /*************** RUN ***************/
+    jsPsych.run([
+      hello,                                  // sanity check first
+      welcome,                                // instructions
+      jsPsychSurveyText, demographics,        // demographics (plugin object is function; this keeps type names consistent)
+      age_gate,                               // gate
+      comp_check, comp_gate,                  // comprehension
+      blockIntro(blocks[0].label), ...blocks[0].trials,
+      blockIntro(blocks[1].label), ...blocks[1].trials,
+      debrief
+    ]);
   </script>
 </body>
-
+</html>
