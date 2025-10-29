@@ -1,28 +1,27 @@
 <head>
   <meta charset="utf-8" />
-  <title>jsPsych test</title>
+  <title>jsPsych test (module)</title>
   <link rel="stylesheet" href="https://unpkg.com/jspsych@7.3.3/css/jspsych.css" />
 </head>
 <body>
   <div id="jspsych-target"></div>
 
-  <!-- Core (global exposes initJsPsych) -->
-  <script src="https://unpkg.com/jspsych@7.3.3/dist/jspsych.js"></script>
+  <script type="module">
+    import jsPsychModule from "https://unpkg.com/jspsych@7.3.3/dist/index.js";
+    const { initJsPsych } = jsPsychModule;
 
-  <!-- Plugins (global names: jsPsychHtmlButtonResponse, jsPsychInstructions, etc.) -->
-  <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.2.0"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-instructions@1.2.0"></script>
+    import jsPsychHtmlButtonResponse from "https://unpkg.com/@jspsych/plugin-html-button-response@1.2.0";
+    import jsPsychInstructions from "https://unpkg.com/@jspsych/plugin-instructions@1.2.0";
 
-  <script>
-    // IMPORTANT: capital J and P → initJsPsych
     const jsPsych = initJsPsych({ display_element: 'jspsych-target' });
 
     const hello = {
       type: jsPsychHtmlButtonResponse,
-      stimulus: "<p>Hello jsPsych!</p>",
+      stimulus: "<p>Hello jsPsych (module)!</p>",
       choices: ["Continue"]
     };
 
     jsPsych.run([hello]);
   </script>
 </body>
+
