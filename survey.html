@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Timed Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #f6f6f6;
+        display: flex;
+        justify-content: center;
+        padding: 40px 16px;
+      }
+      .container {
+        background: #fff;
+        max-width: 720px;
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+        padding: 32px;
+      }
+      h1 {
+        margin-top: 0;
+        font-size: 1.4rem;
+      }
+      p {
+        line-height: 1.6;
+        color: #111827;
+      }
+      .question-text {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+      .option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+        cursor: pointer;
+      }
+      .controls {
+        margin-top: 24px;
+        display: flex;
+        gap: 10px;
+      }
+      button {
+        border: none;
+        background: #111827;
+        color: white;
+        padding: 9px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      button[disabled] {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      .timer {
+        float: right;
+        background: #f3f4f6;
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 0.75rem;
+        color: #111827;
+      }
+      .hidden {
+        display: none;
+      }
+      .progress {
+        font-size: 0.8rem;
+        color: #6b7280;
+        margin-bottom: 16px;
+      }
+      .done-screen {
+        text-align: center;
+      }
+      .consent-screen {
+        text-align: left;
+      }
+      .consent-screen button {
+        margin-top: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- CONSENT SCREEN -->
+      <div id="consent-screen" class="consent-screen">
+        <h1>Participant Consent</h1>
+        <p>
+          Before you begin, please read the following information carefully.
+        </p>
+        <ul>
+          <li>Participation in this study is voluntary.</li>
+          <li>You may withdraw at any time by closing the survey window.</li>
+          <li>
+            All responses are anonymous and used only for academic research.
+          </li>
+          <li>
+            The study involves making simple choices under varying time
+            conditions.
+          </li>
+          <li>There are no known risks associated with participation.</li>
+        </ul>
+        <p>
+          <strong>Note:</strong> Some questions include a countdown timer to
+          measure decision-making time. These responses will be timestamped.
+        </p>
+        <p>
+          By selecting “I agree,” you confirm that:
+          <ul>
+            <li>You are between 18 and 40 years of age.</li>
+            <li>
+              You have read and understood the information above.
+            </li>
+            <li>
+              You consent to participate in this study.
+            </li>
+          </ul>
+        </p>
+        <div class="controls">
+          <button id="agree-btn">I Agree – Begin Survey</button>
+          <button id="disagree-btn" style="background:#9CA3AF;">I Do Not Agree</button>
+        </div>
+      </div>
+
+      <!-- SURVEY SCREEN -->
+      <div id="survey-area" class="hidden">
+        <h1>Survey</h1>
+        <div class="progress" id="progress"></div>
+        <div class="question-text" id="question-text"></div>
+        <div id="options"></div>
+        <div class="controls">
+          <button id="next-btn" disabled>Next</button>
+        </div>
+        <div id="timer" class="timer hidden"></div>
+      </div>
+
+      <!-- DONE SCREEN -->
+      <div id="done" class="done-screen hidden">
+        <h2>Thanks! You’re done ✅</h2>
+        <p>Your responses have been securely recorded.</p>
+      </div>
+    </div>
+    <script>
+      // === CONFIGURE YOUR QUESTIONS HERE ===
+      const questions = [
+        {
+          text: "You can choose a guaranteed local travel voucher or enter a raffle for an international trip. (Rare)",
+          options: [
+            "Take a guaranteed travel voucher worth 2,000 kr (Safe)",
+            "Enter a raffle with a 1% chance to win an international trip worth 200,000 kr (Risky)",
+          ],
+          timed: true,
+        },
+        {
+          text: "You can take a guaranteed small cash amount or flip a coin for a higher amount. (Common)",
+          options: [
+            "Take 1,500 kr for sure (Safe)",
+            "Flip a coin with a 50% chance to win 4,000 kr (Risky)",
+          ],
+          timed: true,
+        },
+        {
+          text: "You can take a treatment that guarantees moderate symptom relief or try a new treatment that might fully cure you. (Rare)",
+          options: [
+            "Take the standard treatment (guaranteed moderate relief)",
+            "Try the new treatment with a 5% chance of full cure (Risky)",
+          ],
+          timed: true,
+          time: 20,
+        },
+        {
+          text: "You can take a guaranteed small cash amount or flip a coin for a higher amount. (Common)",
+          options: [
+            "Take 1,000 kr for sure (Safe)",
+            "Flip a coin with a 50% chance to win 3,500 kr (Risky)",
+          ],
+          timed: false,
+        },
+        {
+          text: "You can accept a guaranteed small training grant or apply for an elite fellowship. (Rare)",
+          options: [
+            "Accept a guaranteed 5,000 kr training grant (Safe)",
+            "Apply to an elite fellowship with a 5% chance to receive 100,000 kr for career development (Risky)",
+          ],
+          timed: false,
+        },
+        {
+          text: "You can leave now and be modestly comfortable for sure, or stop by the restroom and likely still be on time. (Common)",
+          options: [
+            "Leave now: guaranteed modest comfort during the appointment (Safe)",
+            "Use the restroom with a 70% chance of being on time and fully comfortable (Risky)",
+          ],
+          timed: true,
+          time: 20,
+        },
+        {
+          text: "You can accept a guaranteed small audience slot or audition for a major showcase. (Rare)",
+          options: [
+            "Audition for a major showcase with a 70% chance of high exposure (Risky)",
+            "Guaranteed minor showcase slot with modest exposure (Safe)",
+          ],
+          timed: false,
+        },
+        {
+          text: "You can accept a guaranteed small hint or attempt a quick challenge for a bigger hint. (Common)",
+          options: [
+            "Attempt a quick challenge with a 10% chance of earning a big hint (Risky)",
+            "Take a guaranteed small hint (Safe)",
+          ],
+          timed: false,
+        },
+        {
+          text: "You can take a guaranteed small time-saving route or a shortcut that rarely saves a lot of time. (Rare)",
+          options: [
+            "Take a route that reliably saves 3 minutes (Safe)",
+            "Take a shortcut with a 10% chance to save 20 minutes (Risky)",
+          ],
+          timed: true,
+        },
+        {
+          text: "You can schedule a guaranteed short 1:1 with your supervisor or send a message that usually resolves the issue faster. (Common)",
+          options: [
+            "Schedule a guaranteed short 1:1 next day (Safe)",
+            "Send a message with an 70% chance of same-day resolution (Risky)",
+          ],
+          timed: true,
+          time: 20,
+        },
+        {
+          text: "You can accept a guaranteed small bonus point or attempt a tough bonus question. (Rare)",
+          options: [
+            "Attempt a tough bonus question with a 10% chance to earn 20 bonus points (Risky)",
+            "Take 2 bonus points for sure (Safe)",
+          ],
+          timed: false,
+        },
+        {
+          text: "You can leave now with a guaranteed low battery or charge briefly and likely still catch the bus. (Common)",
+          options: [
+            "Leave now: guaranteed arrival with low battery (Safe)",
+            "Charge 3 minutes with a 65% chance of catching the bus and having more battery (Risky)",
+          ],
+          timed: false,
+        },
+        {
+          text: "You can accept a guaranteed small productivity boost or try a beta tool that could boost productivity a lot. (Rare)",
+          options: [
+            "Use a stable tool that guarantees a small productivity boost (Safe)",
+            "Use a beta tool with an 8% chance of a large productivity boost (Risky)",
+          ],
+          timed: false,
+        },
+        {
+          text: "You can rest today and feel somewhat better for sure, or go to the gym which usually feels great afterwards. (Common)",
+          options: [
+            "Go to the gym with a 70% chance of feeling great afterwards (Risky)",
+            "Rest today: guaranteed mild recovery (Safe)",
+          ],
+          timed: true,
+          time: 20,
+        },
+        {
+          text: "You can accept a guaranteed small discount or enter a draw for a large store credit. (Rare)",
+          options: [
+            "Take a guaranteed 500 kr discount (Safe)",
+            "Enter a draw with a 4% chance to win a 10,000 kr store credit (Risky)",
+          ],
+          timed: true,
+          time: 20,
+        },
+        {
+          text: "You can submit now for a guaranteed small bonus, or do a quick check that usually catches errors for a bigger bonus. (Common)",
+          options: [
+            "Do a quick check with an 80% chance to earn +3 points (Risky)",
+            "Submit now: guaranteed +1 point (Safe)",
+          ],
+          timed: false,
+        },
+        {
+          text: "You can accept a guaranteed modest grade bump or attempt an extra project that could boost your grade a lot. (Rare)",
+          options: [
+            "Accept a guaranteed +1% grade bump (Safe)",
+            "Attempt an extra project with a 5% chance of +10% grade bump (Risky)",
+          ],
+          timed: false,
+        },
+        {
+          text: "You can accept a guaranteed small credit for your part, or speak up which usually leads to higher credit. (Common)",
+          options: [
+            "Accept guaranteed small individual credit (Safe)",
+            "Speak up with an 85% chance of higher team credit (Risky)",
+          ],
+          timed: true,
+          time: 20,
+        },
+        {
+          text: "You can take a guaranteed small cash amount or buy a ticket for a large prize. (Rare)",
+          options: [
+            "Take 2,000 kr for sure (Safe)",
+            "Buy a ticket with a 1% chance to win 20,000 kr (the ticket itself is free for you) (Risky)",
+          ],
+          timed: true,
+          time: 20,
+        },
+        {
+          text: "You can accept a guaranteed small discount or choose a delivery option that usually yields a bigger discount. (Common)",
+          options: [
+            "Take a guaranteed 100 kr discount (Safe)",
+            "Choose promo delivery with an 80% chance of a 300 kr discount (Risky)",
+          ],
+          timed: false,
+        },
+      ];
+      const questions1 = [
+        {
+          text: "You can take a guaranteed small cash amount or buy a ticket for a large prize. (Rare)",
+          options: [
+            "Take 2,000 kr for sure (Safe)",
+            "Buy a ticket with a 1% chance to win 20,000 kr (the ticket itself is free for you) (Risky)",
+          ],
+          timed: true,
+          time: 20,
+        },
+        {
+          text: "You can accept a guaranteed small discount or choose a delivery option that usually yields a bigger discount. (Common)",
+          options: [
+            "Take a guaranteed 100 kr discount (Safe)",
+            "Choose promo delivery with an 80% chance of a 300 kr discount (Risky)",
+          ],
+          timed: false,
+        },
+      ];
+
+      
+
+      // === SURVEY LOGIC ===
+      const consentScreen = document.getElementById("consent-screen");
+      const surveyArea = document.getElementById("survey-area");
+      const doneScreen = document.getElementById("done");
+      const agreeBtn = document.getElementById("agree-btn");
+      const disagreeBtn = document.getElementById("disagree-btn");
+      const qTextEl = document.getElementById("question-text");
+      const optionsEl = document.getElementById("options");
+      const nextBtn = document.getElementById("next-btn");
+      const progressEl = document.getElementById("progress");
+      const timerEl = document.getElementById("timer");
+
+      let currentIndex = 0;
+      let answers = [];
+      let selectedOption = null;
+      let countdownId = null;
+      let timeLeft = 0;
+
+      agreeBtn.addEventListener("click", () => {
+        consentScreen.classList.add("hidden");
+        surveyArea.classList.remove("hidden");
+        showQuestion(currentIndex);
+      });
+
+      disagreeBtn.addEventListener("click", () => {
+        alert("You have chosen not to participate. The survey will now close.");
+        window.close();
+      });
+
+      function showQuestion(index) {
+        const q = questions1[index];
+        qTextEl.textContent = q.text;
+        progressEl.textContent = `Question ${index + 1} of ${questions1.length}`;
+        optionsEl.innerHTML = "";
+        q.options.forEach((opt) => {
+          const label = document.createElement("label");
+          label.className = "option";
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = "option";
+          input.value = opt;
+          input.addEventListener("change", () => {
+            selectedOption = opt;
+            nextBtn.disabled = false;
+          });
+          const span = document.createElement("span");
+          span.textContent = opt;
+          label.appendChild(input);
+          label.appendChild(span);
+          optionsEl.appendChild(label);
+        });
+        selectedOption = null;
+        nextBtn.disabled = true;
+        clearInterval(countdownId);
+        if (q.timed) {
+          const secs = typeof q.time === "number" ? q.time : 20;
+          startTimer(secs);
+        } else {
+          timerEl.classList.add("hidden");
+        }
+      }
+
+      function startTimer(seconds) {
+        timeLeft = seconds;
+        timerEl.textContent = `Time left: ${timeLeft}s`;
+        timerEl.classList.remove("hidden");
+        countdownId = setInterval(() => {
+          timeLeft--;
+          timerEl.textContent = `Time left: ${timeLeft}s`;
+          if (timeLeft <= 0) {
+            clearInterval(countdownId);
+            if (!selectedOption) {
+              answers.push({
+                question: questions1[currentIndex].text,
+                answer: "No answer (timed out)",
+              });
+              goNext();
+            } else {
+              submitCurrentAndNext();
+            }
+          }
+        }, 1000);
+      }
+
+      function submitCurrentAndNext() {
+        answers.push({
+          question: questions1[currentIndex].text,
+          answer: selectedOption || "",
+        });
+        goNext();
+      }
+
+      function goNext() {
+        currentIndex++;
+        if (currentIndex >= questions1.length) {
+          finishSurvey();
+        } else {
+          showQuestion(currentIndex);
+        }
+      }
+
+      async function finishSurvey() {
+        clearInterval(countdownId);
+        surveyArea.classList.add("hidden");
+        doneScreen.classList.remove("hidden");
+        const endpoint =
+          "https://script.google.com/macros/s/AKfycbw6y3p8U3thWFcCPlXBu5oR-Qld_wT2rRlTRRQhJFMOXx1P0GivNM4Miw7oZi5c-zMl/exec";
+        try {
+          await fetch(endpoint, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(answers),
+          });
+        } catch (err) {
+          console.error("Error sending responses:", err);
+        }
+      }
+
+      nextBtn.addEventListener("click", () => {
+        clearInterval(countdownId);
+        submitCurrentAndNext();
+      });
+    </script>
+  </body>
+</html>
+
