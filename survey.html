@@ -77,53 +77,156 @@
       .done-screen {
         text-align: center;
       }
-      .consent-screen {
+      .consent-screen,
+      .info-section {
         text-align: left;
       }
-      .consent-screen button {
+      .consent-screen button,
+      .info-section button {
         margin-top: 16px;
+      }
+      .info-section p,
+      .info-section ul {
+        line-height: 1.6;
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <!-- CONSENT SCREEN -->
-      <div id="consent-screen" class="consent-screen">
-        <h1>Participant Consent</h1>
+      <!-- INFORMATION SHEET SECTION -->
+      <div id="info-section" class="info-section">
+        <h1>Participant Information Sheet</h1>
+
         <p>
-          Before you begin, please read the following information carefully.
+          <strong>Project title:</strong> The Influence of Time Pressure on
+          Risky Decision-Making: A Comparison Between Rare and Common Outcome
+          Choices
+        </p>
+
+        <p>Dear participant,</p>
+
+        <p>
+          Thank you for your interest in taking part in our study. This study
+          explores how people make decisions in different situations. Your
+          participation will help us better understand general patterns in
+          decision-making.
+        </p>
+
+        <h3>Your rights as a participant</h3>
+        <p>
+          Participation in this study is completely voluntary. You are free to
+          withdraw at any time, without giving a reason and without any negative
+          consequences. All responses are anonymous and used only for academic
+          research purposes.
+        </p>
+
+        <h3>What will happen in the study</h3>
+
+        <p>
+          You will complete a short online survey consisting of 20
+          decision-making questions, where you will choose between two option.
+          Some of the questions have a time limit.
+        </p>
+
+        <h3>Data storage and handling</h3>
+        <p>
+          Your answers will be stored anonymously. No identifying information
+          such as your name, email, or IP address will be collected. The data
+          will be used only for educational and research purposes as part of a
+          university project.
+        </p>
+
+        <h3>Risks and benefits</h3>
+        <p>
+          There are no known risks associated with this study. Some questions
+          will involve short time limits, but there are no real consequences
+          beyond the survey itself. While there is no direct personal benefit,
+          your participation contributes to understanding human decision-making.
+        </p>
+
+        <h3>Contact information</h3>
+        <p>
+          If you have any questions about the study or your rights as a
+          participant, please contact us at
+        </p>
+        <p>
+          You can reach us via our university emails if you have any questions
+          or concerns.
         </p>
         <ul>
-          <li>Participation in this study is voluntary.</li>
-          <li>You may withdraw at any time by closing the survey window.</li>
-          <li>
-            All responses are anonymous and used only for academic research.
-          </li>
-          <li>
-            The study involves making simple choices under varying time
-            conditions.
-          </li>
-          <li>There are no known risks associated with participation.</li>
+          <li>Aya: s205466@dtu.dk</li>
+          <li>Alec: s205427@dtu.dk</li>
+          <li>Jawahir: s205414@dtu.dk</li>
         </ul>
-        <p>
-          <strong>Note:</strong> Some questions include a countdown timer to
-          measure decision-making time. These responses will be timestamped.
-        </p>
-        <p>
-          By selecting “I agree,” you confirm that:
-          <ul>
-            <li>You are between 18 and 40 years of age.</li>
-            <li>
-              You have read and understood the information above.
-            </li>
-            <li>
-              You consent to participate in this study.
-            </li>
-          </ul>
-        </p>
+
+        <p>When you are ready, please continue to the consent form below.</p>
+
         <div class="controls">
-          <button id="agree-btn">I Agree – Begin Survey</button>
-          <button id="disagree-btn" style="background:#9CA3AF;">I Do Not Agree</button>
+          <button id="continue-to-consent">Continue to Consent Form</button>
+        </div>
+      </div>
+
+      <!-- CONSENT SCREEN -->
+      <div id="consent-screen" class="consent-screen hidden">
+        <h1>Participant Consent Form</h1>
+
+        <p>
+          <strong>Project Title:</strong> The Influence of Time Pressure on
+          Risky Decision-Making: A Comparison Between Rare and Common Outcome
+          Choices
+        </p>
+
+        <p>
+          Before you begin, please read the following statements carefully. By
+          ticking the box below and clicking “Begin Survey,” you confirm that
+          you have understood the information and consent to participate in this
+          study.
+        </p>
+
+        <h3>I confirm that:</h3>
+        <ul>
+          <li>
+            I have read and understood the information provided about this
+            study.
+          </li>
+          <li>I have the opportunity to ask questions.</li>
+          <li>I agree to take part voluntarily.</li>
+        </ul>
+
+        <h3>I understand that:</h3>
+        <ul>
+          <li>I can withdraw at any time without consequences.</li>
+          <li>
+            My responses will be stored anonymously and used only for academic
+            research.
+          </li>
+          <li>No identifying information will be collected.</li>
+        </ul>
+
+        <h3>I agree that:</h3>
+        <ul>
+          <li>
+            My fully anonymous data may be analyzed for educational and
+            scientific purposes.
+          </li>
+        </ul>
+
+        <div
+          class="controls"
+          style="flex-direction: column; align-items: flex-start; gap: 12px"
+        >
+          <label
+            style="
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              font-size: 0.95rem;
+            "
+          >
+            <input type="checkbox" id="consent-checkbox" />
+            I have read the information above and I consent to participate.
+          </label>
+          <button id="agree-btn" disabled>Begin Survey</button>
         </div>
       </div>
 
@@ -145,183 +248,207 @@
         <p>Your responses have been securely recorded.</p>
       </div>
     </div>
+
     <script>
       // === CONFIGURE YOUR QUESTIONS HERE ===
-      const questions1 = [
-        {
-          text: "You can choose a guaranteed local travel voucher or enter a raffle for an international trip. (Rare)",
-          options: [
-            "Take a guaranteed travel voucher worth 2,000 kr (Safe)",
-            "Enter a raffle with a 1% chance to win an international trip worth 200,000 kr (Risky)",
-          ],
-          timed: true,
-        },
-        {
-          text: "You can take a guaranteed small cash amount or flip a coin for a higher amount. (Common)",
-          options: [
-            "Take 1,500 kr for sure (Safe)",
-            "Flip a coin with a 50% chance to win 4,000 kr (Risky)",
-          ],
-          timed: true,
-        },
-        {
-          text: "You can take a treatment that guarantees moderate symptom relief or try a new treatment that might fully cure you. (Rare)",
-          options: [
-            "Take the standard treatment (guaranteed moderate relief)",
-            "Try the new treatment with a 5% chance of full cure (Risky)",
-          ],
-          timed: true,
-          time: 20,
-        },
-        {
-          text: "You can take a guaranteed small cash amount or flip a coin for a higher amount. (Common)",
-          options: [
-            "Take 1,000 kr for sure (Safe)",
-            "Flip a coin with a 50% chance to win 3,500 kr (Risky)",
-          ],
-          timed: false,
-        },
-        {
-          text: "You can accept a guaranteed small training grant or apply for an elite fellowship. (Rare)",
-          options: [
-            "Accept a guaranteed 5,000 kr training grant (Safe)",
-            "Apply to an elite fellowship with a 5% chance to receive 100,000 kr for career development (Risky)",
-          ],
-          timed: false,
-        },
-        {
-          text: "You can leave now and be modestly comfortable for sure, or stop by the restroom and likely still be on time. (Common)",
-          options: [
-            "Leave now: guaranteed modest comfort during the appointment (Safe)",
-            "Use the restroom with a 70% chance of being on time and fully comfortable (Risky)",
-          ],
-          timed: true,
-          time: 20,
-        },
-        {
-          text: "You can accept a guaranteed small audience slot or audition for a major showcase. (Rare)",
-          options: [
-            "Audition for a major showcase with a 70% chance of high exposure (Risky)",
-            "Guaranteed minor showcase slot with modest exposure (Safe)",
-          ],
-          timed: false,
-        },
-        {
-          text: "You can accept a guaranteed small hint or attempt a quick challenge for a bigger hint. (Common)",
-          options: [
-            "Attempt a quick challenge with a 10% chance of earning a big hint (Risky)",
-            "Take a guaranteed small hint (Safe)",
-          ],
-          timed: false,
-        },
-        {
-          text: "You can take a guaranteed small time-saving route or a shortcut that rarely saves a lot of time. (Rare)",
-          options: [
-            "Take a route that reliably saves 3 minutes (Safe)",
-            "Take a shortcut with a 10% chance to save 20 minutes (Risky)",
-          ],
-          timed: true,
-        },
-        {
-          text: "You can schedule a guaranteed short 1:1 with your supervisor or send a message that usually resolves the issue faster. (Common)",
-          options: [
-            "Schedule a guaranteed short 1:1 next day (Safe)",
-            "Send a message with an 70% chance of same-day resolution (Risky)",
-          ],
-          timed: true,
-          time: 20,
-        },
-        {
-          text: "You can accept a guaranteed small bonus point or attempt a tough bonus question. (Rare)",
-          options: [
-            "Attempt a tough bonus question with a 10% chance to earn 20 bonus points (Risky)",
-            "Take 2 bonus points for sure (Safe)",
-          ],
-          timed: false,
-        },
-        {
-          text: "You can leave now with a guaranteed low battery or charge briefly and likely still catch the bus. (Common)",
-          options: [
-            "Leave now: guaranteed arrival with low battery (Safe)",
-            "Charge 3 minutes with a 65% chance of catching the bus and having more battery (Risky)",
-          ],
-          timed: false,
-        },
-        {
-          text: "You can accept a guaranteed small productivity boost or try a beta tool that could boost productivity a lot. (Rare)",
-          options: [
-            "Use a stable tool that guarantees a small productivity boost (Safe)",
-            "Use a beta tool with an 8% chance of a large productivity boost (Risky)",
-          ],
-          timed: false,
-        },
-        {
-          text: "You can rest today and feel somewhat better for sure, or go to the gym which usually feels great afterwards. (Common)",
-          options: [
-            "Go to the gym with a 70% chance of feeling great afterwards (Risky)",
-            "Rest today: guaranteed mild recovery (Safe)",
-          ],
-          timed: true,
-          time: 20,
-        },
-        {
-          text: "You can accept a guaranteed small discount or enter a draw for a large store credit. (Rare)",
-          options: [
-            "Take a guaranteed 500 kr discount (Safe)",
-            "Enter a draw with a 4% chance to win a 10,000 kr store credit (Risky)",
-          ],
-          timed: true,
-          time: 20,
-        },
-        {
-          text: "You can submit now for a guaranteed small bonus, or do a quick check that usually catches errors for a bigger bonus. (Common)",
-          options: [
-            "Do a quick check with an 80% chance to earn +3 points (Risky)",
-            "Submit now: guaranteed +1 point (Safe)",
-          ],
-          timed: false,
-        },
-        {
-          text: "You can accept a guaranteed modest grade bump or attempt an extra project that could boost your grade a lot. (Rare)",
-          options: [
-            "Accept a guaranteed +1% grade bump (Safe)",
-            "Attempt an extra project with a 5% chance of +10% grade bump (Risky)",
-          ],
-          timed: false,
-        },
-        {
-          text: "You can accept a guaranteed small credit for your part, or speak up which usually leads to higher credit. (Common)",
-          options: [
-            "Accept guaranteed small individual credit (Safe)",
-            "Speak up with an 85% chance of higher team credit (Risky)",
-          ],
-          timed: true,
-          time: 20,
-        },
-        {
-          text: "You can take a guaranteed small cash amount or buy a ticket for a large prize. (Rare)",
-          options: [
-            "Take 2,000 kr for sure (Safe)",
-            "Buy a ticket with a 1% chance to win 20,000 kr (the ticket itself is free for you) (Risky)",
-          ],
-          timed: true,
-          time: 20,
-        },
-        {
-          text: "You can accept a guaranteed small discount or choose a delivery option that usually yields a bigger discount. (Common)",
-          options: [
-            "Take a guaranteed 100 kr discount (Safe)",
-            "Choose promo delivery with an 80% chance of a 300 kr discount (Risky)",
-          ],
-          timed: false,
-        },
-      ];
       const questions = [
         {
+          // 1 Rare
+          text: "After completing a company challenge, HR hands you two envelopes  one containing a guaranteed local travel voucher, the other entering you into a raffle for an international trip. Which would you choose? ",
+          options: [
+            "Take a guaranteed travel voucher worth 200 kr",
+            "Enter a raffle with a 1% chance to win an international trip worth 200,000 kr",
+          ],
+          timed: true,
+          time: 35,
+        },
+        {
+          // 2 Common
+          text: "You go out with your friends on a Friday evening and your friend offers a quick game: you can take a small amount of cash right now, or flip a coin for a chance at a higher payout. What do you do?",
+          options: [
+            "Take 400 kr for sure",
+            "Flip a coin with a 50% chance to win 4,000 kr",
+          ],
+          timed: false,
+        },
+        {
+          // 3 Rare
+          text: "You are suffering from a chronic illness. Your doctor offers you two treatments, one that will definitely give moderate symptom relief, and a new experimental one that might completely cure you or have no effect at all. Which sounds more appealing to you?",
+          options: [
+            "Take the standard treatment (guaranteed moderate relief)",
+            "Try the new treatment with a 5% chance of full cure",
+          ],
+          timed: false,
+        },
+        {
+          // 4 Common
+          text: "You’re cooking dinner, and your phone suddenly rings. It's your boss calling. You can either pick up now and risk your food burning slightly, or let it ring and call back later. What do you do? ",
+          options: [
+            "Call back later",
+            "Pick up now and make a good impression, but there is a 70% chance your food will burn",
+          ],
+          timed: true,
+          time: 35,
+        },
+        {
+          // 5 Rare
+          text: "You’ve been approved for a professional development opportunity, and you can either accept a modest training grant or take a chance applying for an elite fellowship that few people get. What would you go for?",
+          options: [
+            "Accept a guaranteed 500 kr training grant",
+            "Apply to an elite fellowship with a 5% chance to receive 100,000 kr for career development",
+          ],
+          timed: true,
+          time: 35,
+        },
+        {
+          // 6 Common
+          text: "You’re about to leave for an appointment but realize you could stop by the restroom first. You’d likely still make it on time, but there’s a small chance you might be late. Do you risk it?",
+          options: [
+            "Leave now: guaranteed modest comfort during the appointment",
+            "Use the restroom with a 70% chance of being on time and fully comfortable",
+          ],
+          timed: false,
+        },
+        {
+          // 7 Rare
+          text: "You’ve been invited to perform at a local event, where you can take a guaranteed small audience slot or audition for the main showcase with a much larger crowd. What would you do?",
+          options: [
+            "Audition for a major showcase with a 70% chance of high exposure",
+            "Guaranteed minor showcase slot with modest exposure",
+          ],
+          timed: true,
+          time: 35,
+        },
+        {
+          // 8 Common
+          text: "You’re stuck on a tricky puzzle. The game offers a guaranteed small hint, or you could complete a quick challenge that might unlock a much bigger clue. What would you choose?",
+          options: [
+            "Attempt a quick challenge with a 10% chance of earning a big hint",
+            "Take a guaranteed small hint",
+          ],
+          timed: true,
+          time: 35,
+        },
+        {
+          // 9 Rare
+          text: "On your way home, your GPS shows two routes, one reliable and another is a shortcut that saves you a lot time, but can sometimes backfire as you can get lost. Which route do you take? ",
+          options: [
+            "Take a route that reliable, you'll be home a bit late",
+            "Take a shortcut with a 10% chance to save 20 minutes",
+          ],
+          timed: false,
+        },
+        {
+          // 10 Common
+          text: "You’re facing a small issue at work. You can schedule a short guaranteed meeting with your supervisor tomorrow, or send a quick message now that usually gets resolved faster. How do you handle it?",
+          options: [
+            "Schedule a guaranteed short 1:1 next day",
+            "Send a message with an 70% chance of same-day resolution",
+          ],
+          timed: true,
+          time: 35,
+        },
+        {
+          // 11 Rare
+          text: "Your professor offers a small guaranteed bonus point, but there’s also an optional tough bonus question that could earn you more. Do you take the safe reward or test your luck?",
+          options: [
+            "Attempt a tough bonus question with a 10% chance to earn 20 bonus points",
+            "Take 2 bonus points for sure",
+          ],
+          timed: false,
+        },
+        {
+          // 12 Common
+          text: "You’re about to leave for school but your phone battery is low. You can leave now and make it for sure, or charge for a few minutes and maybe still catch the bus. What do you do? ",
+          options: [
+            "Leave now: guaranteed arrival with low battery",
+            "Charge 3 minutes with a 65% chance of catching the bus and having more battery",
+          ],
+          timed: false,
+        },
+        {
+          // 13 Rare
+          text: "You’re choosing a work tool: one gives a steady boost to your productivity, while a new beta version could either double your efficiency or slow you down completely. Which would you pick?",
+          options: [
+            "Use a stable tool that guarantees a small productivity boost",
+            "Use a beta tool with an 8% chance of a large productivity boost",
+          ],
+          timed: true,
+          time: 35,
+        },
+        {
+          // 14 Common
+          text: "It’s late and you’re tired after work. You can rest and feel somewhat better tomorrow, or head to the gym — which usually feels great afterwards but could leave you even more drained. What do you choose?",
+          options: [
+            "Go to the gym with a 70% chance of feeling great afterwards",
+            "Rest today: guaranteed mild recovery",
+          ],
+          timed: false,
+        },
+        {
+          // 15 Rare
+          text: "You’re online shopping during a sale. You can take a guaranteed small discount or enter a draw for a big store credit. Which option tempts you more?",
+          options: [
+            "Take a guaranteed 500 kr discount",
+            "Enter a draw with a 4% chance to win a 10,000 kr store credit",
+          ],
+          timed: false,
+        },
+        {
+          // 16 Common
+          text: "You’ve just finished your assignment. You can submit it now for a guaranteed small bonus or spend extra time double-checking it, which usually catches mistakes and earns a higher reward. What do you do?",
+          options: [
+            "Do a quick check with an 80% chance to earn +3 points",
+            "Submit now: guaranteed +1 point",
+          ],
+          timed: true,
+          time: 35,
+        },
+        {
+          // 17 Rare
+          text: "Your teacher offers an optional project. You can take a guaranteed modest grade bump or complete a difficult extra task that could raise your final grade significantly. What feels right to you?",
+          options: [
+            "Accept a guaranteed +1% grade bump",
+            "Attempt an extra project with a 5% chance of +10% grade bump",
+          ],
+          timed: true,
+          time: 35,
+        },
+        {
+          // 18 Common
+          text: "You’ve just finished a group project. You can quietly accept a small amount of credit for your work or speak up during the review, which often leads to more recognition. What would you do?",
+          options: [
+            "Accept guaranteed small individual credit",
+            "Speak up with an 85% chance of higher team credit",
+          ],
+          timed: false,
+        },
+        {
+          // 19 Rare
+          text: "You’ve just been paid and see an ad for a huge lottery jackpot. You can keep a small amount of your cash safely or spend it on a ticket for the chance to win big. What would you choose?",
+          options: [
+            "Take 200 kr for sure",
+            "Buy a ticket with a 1% chance to win 20,000 kr (the ticket itself is free for you)",
+          ],
+          timed: false,
+        },
+        {
+          // 20 Common
+          text: "You’re checking out online. You can take a guaranteed small discount now or select a slower delivery option that usually brings a larger discount. Which option do you pick? ",
+          options: [
+            "Take a guaranteed 100 kr discount",
+            "Choose promo delivery with an 80% chance of a 500 kr discount",
+          ],
+          timed: true,
+          time: 35,
+        },
+      ];
+      const questions1 = [
+        {
           text: "You can take a guaranteed small cash amount or buy a ticket for a large prize. (Rare)",
           options: [
-            "Take 2,000 kr for sure (Safe)",
-            "Buy a ticket with a 1% chance to win 20,000 kr (the ticket itself is free for you) (Risky)",
+            "Take 300 kr for sure",
+            "Buy a ticket with a 3% chance to win 20,000 kr (the ticket itself is free for you)",
           ],
           timed: true,
           time: 20,
@@ -329,32 +456,46 @@
         {
           text: "You can accept a guaranteed small discount or choose a delivery option that usually yields a bigger discount. (Common)",
           options: [
-            "Take a guaranteed 100 kr discount (Safe)",
-            "Choose promo delivery with an 80% chance of a 300 kr discount (Risky)",
+            "Take a guaranteed 100 kr discount",
+            "Choose promo delivery with an 80% chance of a 300 kr discount",
           ],
           timed: false,
         },
       ];
 
-      
-
-      // === SURVEY LOGIC ===
+      // === DOM ELEMENTS ===
+      const infoSection = document.getElementById("info-section");
       const consentScreen = document.getElementById("consent-screen");
       const surveyArea = document.getElementById("survey-area");
       const doneScreen = document.getElementById("done");
+
+      const continueBtn = document.getElementById("continue-to-consent");
       const agreeBtn = document.getElementById("agree-btn");
-      const disagreeBtn = document.getElementById("disagree-btn");
+      const consentCheckbox = document.getElementById("consent-checkbox");
+
+      // survey elements (these were missing 👇)
       const qTextEl = document.getElementById("question-text");
       const optionsEl = document.getElementById("options");
       const nextBtn = document.getElementById("next-btn");
       const progressEl = document.getElementById("progress");
       const timerEl = document.getElementById("timer");
 
+      // === STATE ===
       let currentIndex = 0;
       let answers = [];
       let selectedOption = null;
       let countdownId = null;
       let timeLeft = 0;
+
+      // === FLOW LOGIC ===
+      continueBtn.addEventListener("click", () => {
+        infoSection.classList.add("hidden");
+        consentScreen.classList.remove("hidden");
+      });
+
+      consentCheckbox.addEventListener("change", () => {
+        agreeBtn.disabled = !consentCheckbox.checked;
+      });
 
       agreeBtn.addEventListener("click", () => {
         consentScreen.classList.add("hidden");
@@ -362,38 +503,43 @@
         showQuestion(currentIndex);
       });
 
-      disagreeBtn.addEventListener("click", () => {
-        alert("You have chosen not to participate. The survey will now close.");
-        window.close();
-      });
-
+      // === RENDER QUESTION ===
       function showQuestion(index) {
-        const q = questions1[index];
+        const q = questions[index]; // use the full 20-question list
         qTextEl.textContent = q.text;
-        progressEl.textContent = `Question ${index + 1} of ${questions1.length}`;
+        progressEl.textContent = `Question ${index + 1} of ${questions.length}`;
+
+        // build options
         optionsEl.innerHTML = "";
         q.options.forEach((opt) => {
           const label = document.createElement("label");
           label.className = "option";
+
           const input = document.createElement("input");
           input.type = "radio";
           input.name = "option";
           input.value = opt;
+
           input.addEventListener("change", () => {
             selectedOption = opt;
             nextBtn.disabled = false;
           });
+
           const span = document.createElement("span");
           span.textContent = opt;
+
           label.appendChild(input);
           label.appendChild(span);
           optionsEl.appendChild(label);
         });
+
+        // reset button + timer
         selectedOption = null;
         nextBtn.disabled = true;
+
         clearInterval(countdownId);
         if (q.timed) {
-          const secs = typeof q.time === "number" ? q.time : 20;
+          const secs = typeof q.time === "number" ? q.time : 40;
           startTimer(secs);
         } else {
           timerEl.classList.add("hidden");
@@ -404,14 +550,17 @@
         timeLeft = seconds;
         timerEl.textContent = `Time left: ${timeLeft}s`;
         timerEl.classList.remove("hidden");
+
         countdownId = setInterval(() => {
           timeLeft--;
           timerEl.textContent = `Time left: ${timeLeft}s`;
+
           if (timeLeft <= 0) {
             clearInterval(countdownId);
+            // if no answer, record timeout
             if (!selectedOption) {
               answers.push({
-                question: questions1[currentIndex].text,
+                question: questions[currentIndex].text,
                 answer: "No answer (timed out)",
               });
               goNext();
@@ -424,7 +573,7 @@
 
       function submitCurrentAndNext() {
         answers.push({
-          question: questions1[currentIndex].text,
+          question: questions[currentIndex].text,
           answer: selectedOption || "",
         });
         goNext();
@@ -432,7 +581,7 @@
 
       function goNext() {
         currentIndex++;
-        if (currentIndex >= questions1.length) {
+        if (currentIndex >= questions.length) {
           finishSurvey();
         } else {
           showQuestion(currentIndex);
@@ -443,8 +592,10 @@
         clearInterval(countdownId);
         surveyArea.classList.add("hidden");
         doneScreen.classList.remove("hidden");
+
         const endpoint =
           "https://script.google.com/macros/s/AKfycbw6y3p8U3thWFcCPlXBu5oR-Qld_wT2rRlTRRQhJFMOXx1P0GivNM4Miw7oZi5c-zMl/exec";
+
         try {
           await fetch(endpoint, {
             method: "POST",
@@ -464,4 +615,3 @@
     </script>
   </body>
 </html>
-
