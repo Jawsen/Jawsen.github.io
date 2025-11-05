@@ -60,12 +60,47 @@
       }
       .timer {
         float: right;
-        background: #f3f4f6;
+        background: #fee2e2;
+        border: 2px solid #ef4444;
         border-radius: 999px;
-        padding: 4px 14px;
-        font-size: 0.75rem;
-        color: #111827;
+        padding: 6px 16px;
+        font-size: 0.9rem;
+        color: #b91c1c;
+        font-weight: 600;
+        transition: background 0.3s, color 0.3s;
+        position: relative;
+        overflow: hidden;
       }
+
+      /* Progress bar inside the timer */
+      .timer::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 100%;
+        background: #ef4444;
+        transition: width 1s linear;
+      }
+
+      /* Flashing red animation when time is low */
+      @keyframes flash {
+        0%,
+        100% {
+          background: #fee2e2;
+          color: #b91c1c;
+        }
+        50% {
+          background: #ef4444;
+          color: white;
+        }
+      }
+
+      .timer.flash {
+        animation: flash 0.8s ease-in-out infinite;
+      }
+
       .hidden {
         display: none;
       }
