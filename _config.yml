@@ -30,3 +30,4 @@ plugins:
 # Tell Jekyll to include our custom HTML page
 include:
   - survey.html
+  - survey2.html
