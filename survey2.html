@@ -630,6 +630,7 @@
               answers.push({
                 question: questions[currentIndex].text,
                 answer: "No answer (timed out)",
+                timed: !!questions[currentIndex].timed,
               });
               goNext();
             } else {
@@ -643,6 +644,7 @@
         answers.push({
           question: questions[currentIndex].text,
           answer: selectedOption || "",
+          timed: !!questions[currentIndex].timed,
         });
         goNext();
       }
@@ -662,7 +664,7 @@
         doneScreen.classList.remove("hidden");
 
         const endpoint =
-          "https://script.google.com/macros/s/AKfycbxoL1bep2BWD7NEG6pwIkOag22zi4OCqXseTjRPPmiB2HFc2Xd7-rAPiVdfeYFdt6M/exec";
+          "https://script.google.com/macros/s/AKfycbxD0hn3X0sOO0EbO8YPZgmHIvLBp90XsrxOtYFcDhRH4ScYFIbc-2B0ZUyXlByq4A/exec";
         try {
           await fetch(endpoint, {
             method: "POST",
