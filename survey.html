@@ -319,7 +319,7 @@
 
     <script>
       // === CONFIGURE YOUR QUESTIONS HERE ===
-      const questions = [
+      const questions1 = [
         {
           // 1 Rare
           text: "After completing a company challenge, HR hands you two envelopes  one containing a guaranteed local travel voucher, the other entering you into a raffle for an international trip. Which would you choose? ",
@@ -511,7 +511,7 @@
           time: 35,
         },
       ];
-      const questions1 = [
+      const questions = [
         {
           text: "You can take a guaranteed small cash amount or buy a ticket for a large prize. (Rare)",
           options: [
@@ -519,7 +519,7 @@
             "Buy a ticket with a 3% chance to win 20,000 kr (the ticket itself is free for you)",
           ],
           timed: true,
-          time: 20,
+          time: 35,
         },
         {
           text: "You can accept a guaranteed small discount or choose a delivery option that usually yields a bigger discount. (Common)",
@@ -630,6 +630,7 @@
               answers.push({
                 question: questions[currentIndex].text,
                 answer: "No answer (timed out)",
+                timed: !!questions[currentIndex].timed,
               });
               goNext();
             } else {
@@ -643,7 +644,9 @@
         answers.push({
           question: questions[currentIndex].text,
           answer: selectedOption || "",
+          timed: !!questions[currentIndex].timed,
         });
+
         goNext();
       }
 
@@ -662,7 +665,7 @@
         doneScreen.classList.remove("hidden");
 
         const endpoint =
-          "https://script.google.com/macros/s/AKfycbw6y3p8U3thWFcCPlXBu5oR-Qld_wT2rRlTRRQhJFMOXx1P0GivNM4Miw7oZi5c-zMl/exec";
+          "https://script.google.com/macros/s/AKfycbyW_FrU7aq4aoi-iiCobxezRyA_4gdK-rgeAynGSkROsN8xsvoKThJ213d3nWNBP8Sr/exec";
 
         try {
           await fetch(endpoint, {
