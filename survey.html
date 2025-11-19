@@ -58,50 +58,42 @@
         opacity: 0.4;
         cursor: not-allowed;
       }
+
+      /* NEW TIMER STYLES */
       .timer {
-        float: right;
-        background: #fee2e2;
-        border: 2px solid #ef4444;
-        border-radius: 999px;
-        padding: 6px 16px;
-        font-size: 0.9rem;
-        color: #b91c1c;
-        font-weight: 600;
-        transition: background 0.3s, color 0.3s;
-        position: relative;
-        overflow: hidden;
+        margin: 12px auto 20px auto;
+        max-width: 360px;
+        text-align: center;
+        padding: 0;
       }
-      .timer::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 3px;
+      .timer-text {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #b91c1c;
+        margin-bottom: 6px;
+      }
+      .timer-bar-outer {
+        width: 100%;
+        height: 12px;
+        background: #fee2e2;
+        border-radius: 999px;
+        overflow: hidden;
+        border: 1px solid #fecaca;
+      }
+      .timer-bar-inner {
+        height: 100%;
         width: 100%;
         background: #ef4444;
-        transition: width 1s linear;
+        transition: width 0.1s linear;
       }
-      @keyframes flash {
-        0%,
-        100% {
-          background: #fee2e2;
-          color: #b91c1c;
-        }
-        50% {
-          background: #ef4444;
-          color: white;
-        }
-      }
-      .timer.flash {
-        animation: flash 0.8s ease-in-out infinite;
-      }
+
       .hidden {
         display: none;
       }
       .progress {
         font-size: 0.8rem;
         color: #6b7280;
-        margin-bottom: 16px;
+        margin-bottom: 8px;
       }
       .done-screen {
         text-align: center;
@@ -153,7 +145,7 @@
 
         <p>
           You will complete a short online survey consisting of 20
-          decision-making questions, where you will choose between two option.
+          decision-making questions, where you will choose between two options.
           Some of the questions have a time limit.
         </p>
 
@@ -269,6 +261,18 @@
           Total points: 100
         </div>
         <div class="progress" id="progress"></div>
+
+        <!-- TIMER IN THE MIDDLE -->
+        <div id="timer" class="timer hidden">
+          <div id="timer-text" class="timer-text"></div>
+          <div class="timer-bar-outer">
+            <div
+              id="timer-bar-inner"
+              class="timer-bar-inner"
+            ></div>
+          </div>
+        </div>
+
         <div class="question-text" id="question-text"></div>
         <div id="options"></div>
         <div
@@ -278,7 +282,6 @@
         <div class="controls">
           <button id="next-btn" disabled>Next</button>
         </div>
-        <div id="timer" class="timer hidden"></div>
       </div>
 
       <!-- DONE SCREEN -->
@@ -331,7 +334,7 @@
           {
             rarity: "rare",
             timed: true,
-            time: 3,
+            time: 10,
             text: "You can take a safe gain, or a rare chance at a much larger gain.",
             safeLabel: "Take +20 points for sure",
             riskyLabel: "20% chance to win +80 points, 80% chance to win 0",
@@ -343,7 +346,7 @@
           {
             rarity: "rare",
             timed: true,
-            time: 3,
+            time: 10,
             text: "You can keep a small safe bonus, or risk it for a rare big reward.",
             safeLabel: "Take +15 points for sure",
             riskyLabel: "15% chance to win +90 points, 85% chance to win 0",
@@ -355,7 +358,7 @@
           {
             rarity: "rare",
             timed: true,
-            time: 3,
+            time: 10,
             text: "You may choose a modest gain or a rare gamble with a high upside.",
             safeLabel: "Take +10 points for sure",
             riskyLabel: "10% chance to win +100 points, 90% chance to win 0",
@@ -367,7 +370,7 @@
           {
             rarity: "rare",
             timed: true,
-            time: 3,
+            time: 10,
             text: "You can choose a safe small reward or a risky option that might greatly boost your points.",
             safeLabel: "Take +12 points for sure",
             riskyLabel: "12% chance to win +120 points, 88% chance to win 0",
@@ -379,7 +382,7 @@
           {
             rarity: "rare",
             timed: true,
-            time: 3,
+            time: 10,
             text: "You can keep your points stable or risk them for a rare large gain but possible loss.",
             safeLabel: "Take +8 points for sure",
             riskyLabel: "10% chance to win +80, 90% chance to lose -20",
@@ -450,7 +453,7 @@
           {
             rarity: "common",
             timed: true,
-            time: 3,
+            time: 10,
             text: "You can take a sure gain, or choose an option that usually gives a higher reward.",
             safeLabel: "Take +15 points for sure",
             riskyLabel: "70% chance to win +30, 30% chance to win 0",
@@ -462,7 +465,7 @@
           {
             rarity: "common",
             timed: true,
-            time: 3,
+            time: 10,
             text: "Choose between a safe moderate gain and a common higher reward.",
             safeLabel: "Take +18 points for sure",
             riskyLabel: "80% chance to win +25, 20% chance to win 0",
@@ -474,7 +477,7 @@
           {
             rarity: "common",
             timed: true,
-            time: 3,
+            time: 10,
             text: "You can secure points or choose a risky option that usually increases your total.",
             safeLabel: "Take +12 points for sure",
             riskyLabel: "75% chance to win +28, 25% chance to win 0",
@@ -486,7 +489,7 @@
           {
             rarity: "common",
             timed: true,
-            time: 3,
+            time: 10,
             text: "Choose between a safe small gain and a common higher reward gamble.",
             safeLabel: "Take +10 points for sure",
             riskyLabel: "65% chance to win +35, 35% chance to win 0",
@@ -498,7 +501,7 @@
           {
             rarity: "common",
             timed: true,
-            time: 3,
+            time: 10,
             text: "You can keep a sure reward or pick an option that usually gives you more points.",
             safeLabel: "Take +14 points for sure",
             riskyLabel: "70% chance to win +32, 30% chance to win 0",
@@ -590,6 +593,8 @@
         const nextBtn = document.getElementById("next-btn");
         const progressEl = document.getElementById("progress");
         const timerEl = document.getElementById("timer");
+        const timerTextEl = document.getElementById("timer-text");
+        const timerBarFill = document.getElementById("timer-bar-inner");
         const scoreEl = document.getElementById("score-display");
         const outcomeTextEl = document.getElementById("outcome-text");
 
@@ -600,6 +605,7 @@
         let selectedOption = null; // "safe" or "risky"
         let countdownId = null;
         let timeLeft = 0;
+        let totalTime = 0;
 
         const endpoint =
           "https://script.google.com/macros/s/AKfycbyW_FrU7aq4aoi-iiCobxezRyA_4gdK-rgeAynGSkROsN8xsvoKThJ213d3nWNBP8Sr/exec";
@@ -674,7 +680,7 @@
 
           clearInterval(countdownId);
           if (q.timed) {
-            const secs = typeof q.time === "number" ? q.time : 3;
+            const secs = typeof q.time === "number" ? q.time : 10;
             startTimer(secs);
           } else {
             timerEl.classList.add("hidden");
@@ -683,12 +689,19 @@
 
         function startTimer(seconds) {
           timeLeft = seconds;
-          timerEl.textContent = `Time left: ${timeLeft}s`;
+          totalTime = seconds;
           timerEl.classList.remove("hidden");
+          timerTextEl.textContent = `Time left: ${timeLeft}s`;
+          timerBarFill.style.width = "100%";
 
+          clearInterval(countdownId);
           countdownId = setInterval(() => {
             timeLeft--;
-            timerEl.textContent = `Time left: ${timeLeft}s`;
+            if (timeLeft >= 0) {
+              timerTextEl.textContent = `Time left: ${timeLeft}s`;
+              const pct = (timeLeft / totalTime) * 100;
+              timerBarFill.style.width = pct + "%";
+            }
 
             if (timeLeft <= 0) {
               clearInterval(countdownId);
