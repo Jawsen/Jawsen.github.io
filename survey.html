@@ -115,12 +115,18 @@
         line-height: 1.6;
       }
 
-      /* ===== SCORE ANIMATION STYLES ===== */
-      #score-wrapper {
-        position: relative;
+      /* ===== SCORE + DELTA ROW ===== */
+      #score-row {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
         margin-bottom: 8px;
         font-weight: 600;
         color: #111827;
+      }
+
+      #score-display {
+        transition: color 0.2s ease;
       }
 
       /* Pulse on the total score */
@@ -142,9 +148,6 @@
 
       /* Floating delta (+20 / -10) */
       .score-delta {
-        position: absolute;
-        right: 0;
-        top: -2px;
         font-weight: 700;
         opacity: 0;
         pointer-events: none;
@@ -365,8 +368,8 @@
       <div id="survey-area" class="hidden">
         <h1>Survey</h1>
 
-        <!-- SCORE WRAPPER WITH DELTA -->
-        <div id="score-wrapper">
+        <!-- SCORE ROW (total + floating delta) -->
+        <div id="score-row">
           <div id="score-display">Total points: 100</div>
           <div id="score-delta" class="score-delta hidden"></div>
         </div>
@@ -744,6 +747,7 @@
           instructionsScreen.classList.add("hidden");
           surveyArea.classList.remove("hidden");
           score = baseScore;
+          scoreEl.style.color = "#111827";
           updateScoreDisplay();
           showQuestion(currentIndex);
         });
@@ -753,14 +757,25 @@
         }
 
         function showScoreAnimation(delta) {
-          if (delta == null || delta === 0) return;
+          // no change or no outcome: keep base color and no animation
+          if (delta == null || delta === 0) {
+            scoreEl.style.color = "#111827";
+            return;
+          }
+
+          // color by gain / loss
+          if (delta > 0) {
+            scoreEl.style.color = "#16a34a"; // green
+          } else if (delta < 0) {
+            scoreEl.style.color = "#b91c1c"; // red
+          }
 
           // pulse the total score
           scoreEl.classList.remove("score-pulse");
           void scoreEl.offsetWidth; // force reflow so animation restarts
           scoreEl.classList.add("score-pulse");
 
-          // floating delta
+          // floating delta next to score
           scoreDeltaEl.classList.remove("hidden", "positive", "negative", "show");
           const sign = delta > 0 ? "+" : "";
           scoreDeltaEl.textContent = `${sign}${delta}`;
@@ -849,6 +864,7 @@
               if (!selectedOption) {
                 // timeout
                 recordAnswer("No answer (timed out)", null);
+                scoreEl.style.color = "#111827";
                 goNext();
               } else {
                 submitCurrentAndNext();
