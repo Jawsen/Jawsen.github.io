@@ -243,7 +243,6 @@
           You can reach us via our university emails if you have any questions
           or concerns.
         </p>
-      
 
         <p>When you are ready, please continue to the consent form below.</p>
 
@@ -772,7 +771,12 @@
           scoreEl.classList.add("score-pulse");
 
           // floating delta next to score
-          scoreDeltaEl.classList.remove("hidden", "positive", "negative", "show");
+          scoreDeltaEl.classList.remove(
+            "hidden",
+            "positive",
+            "negative",
+            "show"
+          );
           const sign = delta > 0 ? "+" : "";
           scoreDeltaEl.textContent = `${sign}${delta}`;
           scoreDeltaEl.classList.add(delta > 0 ? "positive" : "negative");
@@ -792,43 +796,38 @@
           }`;
           outcomeTextEl.textContent = "";
           optionsEl.innerHTML = "";
-
-          // Safe option
-          const safeLabel = document.createElement("label");
-          safeLabel.className = "option";
-          const safeInput = document.createElement("input");
-          safeInput.type = "radio";
-          safeInput.name = "option";
-          safeInput.value = "safe";
-          safeInput.addEventListener("change", () => {
-            selectedOption = "safe";
-            nextBtn.disabled = false;
-          });
-          const safeSpan = document.createElement("span");
-          safeSpan.textContent = q.safeLabel;
-          safeLabel.appendChild(safeInput);
-          safeLabel.appendChild(safeSpan);
-          optionsEl.appendChild(safeLabel);
-
-          // Risky option
-          const riskyLabel = document.createElement("label");
-          riskyLabel.className = "option";
-          const riskyInput = document.createElement("input");
-          riskyInput.type = "radio";
-          riskyInput.name = "option";
-          riskyInput.value = "risky";
-          riskyInput.addEventListener("change", () => {
-            selectedOption = "risky";
-            nextBtn.disabled = false;
-          });
-          const riskySpan = document.createElement("span");
-          riskySpan.textContent = q.riskyLabel;
-          riskyLabel.appendChild(riskyInput);
-          riskyLabel.appendChild(riskySpan);
-          optionsEl.appendChild(riskyLabel);
-
           selectedOption = null;
           nextBtn.disabled = true;
+
+          // ---- RANDOMIZE OPTION ORDER (safe vs risky) ----
+          let optionDefs = [
+            { type: "safe", label: q.safeLabel },
+            { type: "risky", label: q.riskyLabel },
+          ];
+          if (Math.random() < 0.5) {
+            optionDefs.reverse();
+          }
+
+          optionDefs.forEach((opt) => {
+            const label = document.createElement("label");
+            label.className = "option";
+
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = "option";
+            input.value = opt.type; // "safe" or "risky"
+            input.addEventListener("change", () => {
+              selectedOption = opt.type;
+              nextBtn.disabled = false;
+            });
+
+            const span = document.createElement("span");
+            span.textContent = opt.label;
+
+            label.appendChild(input);
+            label.appendChild(span);
+            optionsEl.appendChild(label);
+          });
 
           clearInterval(countdownId);
           if (q.timed) {
