@@ -59,7 +59,7 @@
         cursor: not-allowed;
       }
 
-      /* NEW TIMER STYLES */
+      /* TIMER STYLES */
       .timer {
         margin: 12px auto 20px auto;
         max-width: 360px;
@@ -99,15 +99,19 @@
         text-align: center;
       }
       .consent-screen,
-      .info-section {
+      .info-section,
+      .instructions-screen {
         text-align: left;
       }
       .consent-screen button,
-      .info-section button {
+      .info-section button,
+      .instructions-screen button {
         margin-top: 16px;
       }
       .info-section p,
-      .info-section ul {
+      .info-section ul,
+      .instructions-screen p,
+      .instructions-screen ul {
         line-height: 1.6;
       }
     </style>
@@ -247,7 +251,54 @@
             <input type="checkbox" id="consent-checkbox" />
             I have read the information above and I consent to participate.
           </label>
-          <button id="agree-btn" disabled>Begin Survey</button>
+          <button id="agree-btn" disabled>Begin Instructions</button>
+        </div>
+      </div>
+
+      <!-- INSTRUCTIONS SCREEN -->
+      <div
+        id="instructions-screen"
+        class="instructions-screen hidden"
+      >
+        <h1>Instructions</h1>
+        <p>
+          In this task, you will make a series of choices between two options.
+          You will start with <strong>100 points</strong>, and your total can go
+          up or down based on your choices.
+        </p>
+        <ul>
+          <li>
+            <strong>Safe option:</strong> gives a guaranteed change in points
+            (for example, “+15 points for sure”).
+          </li>
+          <li>
+            <strong>Risky option:</strong> has a chance to give a higher gain,
+            but sometimes nothing or even a loss. The outcome is based on the
+            stated probability and is randomly determined each time.
+          </li>
+        </ul>
+        <p><strong>Example:</strong></p>
+        <p style="margin-left: 12px">
+          Safe option: <em>“Take +15 points for sure.”</em><br />
+          Risky option:
+          <em>“30% chance to win +60 points, 70% chance to win 0.”</em><br />
+          If you choose the risky option, sometimes you will get +60 points,
+          and sometimes you will get 0 points. This is decided randomly
+          according to the percentages each time.
+        </p>
+        <p>
+          Some questions will have a <strong>time limit</strong>. A timer and a
+          bar will appear on the screen and count down. If you do not answer in
+          time, the question will be marked as “No answer (timed out)” and you
+          will automatically move on to the next one.
+        </p>
+        <p>
+          Please answer as honestly as you can. There are no right or wrong
+          answers. The points are only used for this task and do not correspond
+          to real money.
+        </p>
+        <div class="controls">
+          <button id="start-game-btn">I am ready to start</button>
         </div>
       </div>
 
@@ -581,12 +632,16 @@
         // ============= DOM ELEMENTS =============
         const infoSection = document.getElementById("info-section");
         const consentScreen = document.getElementById("consent-screen");
+        const instructionsScreen = document.getElementById(
+          "instructions-screen"
+        );
         const surveyArea = document.getElementById("survey-area");
         const doneScreen = document.getElementById("done");
 
         const continueBtn = document.getElementById("continue-to-consent");
         const agreeBtn = document.getElementById("agree-btn");
         const consentCheckbox = document.getElementById("consent-checkbox");
+        const startGameBtn = document.getElementById("start-game-btn");
 
         const qTextEl = document.getElementById("question-text");
         const optionsEl = document.getElementById("options");
@@ -620,8 +675,15 @@
           agreeBtn.disabled = !consentCheckbox.checked;
         });
 
+        // After consent, show INSTRUCTIONS first
         agreeBtn.addEventListener("click", () => {
           consentScreen.classList.add("hidden");
+          instructionsScreen.classList.remove("hidden");
+        });
+
+        // From instructions to actual game
+        startGameBtn.addEventListener("click", () => {
+          instructionsScreen.classList.add("hidden");
           surveyArea.classList.remove("hidden");
           score = baseScore;
           updateScoreDisplay();
