@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Timed Survey</title>
+    <title>Timed Survey – Risk Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       body {
@@ -71,8 +71,6 @@
         position: relative;
         overflow: hidden;
       }
-
-      /* Progress bar inside the timer */
       .timer::after {
         content: "";
         position: absolute;
@@ -83,8 +81,6 @@
         background: #ef4444;
         transition: width 1s linear;
       }
-
-      /* Flashing red animation when time is low */
       @keyframes flash {
         0%,
         100% {
@@ -96,11 +92,9 @@
           color: white;
         }
       }
-
       .timer.flash {
         animation: flash 0.8s ease-in-out infinite;
       }
-
       .hidden {
         display: none;
       }
@@ -268,16 +262,25 @@
       <!-- SURVEY SCREEN -->
       <div id="survey-area" class="hidden">
         <h1>Survey</h1>
+        <div
+          id="score-display"
+          style="margin-bottom: 8px; font-weight: 600; color: #111827"
+        >
+          Total points: 100
+        </div>
         <div class="progress" id="progress"></div>
         <div class="question-text" id="question-text"></div>
         <div id="options"></div>
+        <div
+          id="outcome-text"
+          style="margin-top: 12px; color: #4b5563; min-height: 1.2em"
+        ></div>
         <div class="controls">
           <button id="next-btn" disabled>Next</button>
         </div>
         <div id="timer" class="timer hidden"></div>
       </div>
 
-      <!-- DONE SCREEN -->
       <!-- DONE SCREEN -->
       <div id="done" class="done-screen hidden" style="text-align: center">
         <div
@@ -317,372 +320,463 @@
         </div>
       </div>
 
-    <script>
-      // === CONFIGURE YOUR QUESTIONS HERE ===
-      const questions = [
-        {
-          // 1 Rare
-          text: "After completing a company challenge, HR hands you two envelopes  one containing a guaranteed local travel voucher, the other entering you into a raffle for an international trip. Which would you choose? ",
-          options: [
-            "Take a guaranteed travel voucher worth 200 kr",
-            "Enter a raffle with a 1% chance to win an international trip worth 200,000 kr",
-          ],
-          timed: true,
-          time: 35,
-        },
-        {
-          // 2 Common
-          text: "You go out with your friends on a Friday evening and your friend offers a quick game: you can take a small amount of cash right now, or flip a coin for a chance at a higher payout. What do you do?",
-          options: [
-            "Take 400 kr for sure",
-            "Flip a coin with a 50% chance to win 4,000 kr",
-          ],
-          timed: false,
-        },
-        {
-          // 3 Rare
-          text: "You are suffering from a chronic illness. Your doctor offers you two treatments, one that will definitely give moderate symptom relief, and a new experimental one that might completely cure you or have no effect at all. Which sounds more appealing to you?",
-          options: [
-            "Take the standard treatment (guaranteed moderate relief)",
-            "Try the new treatment with a 5% chance of full cure",
-          ],
-          timed: false,
-        },
-        {
-          // 4 Common
-          text: "You’re cooking dinner, and your phone suddenly rings. It's your boss calling. You can either pick up now and risk your food burning slightly, or let it ring and call back later. What do you do? ",
-          options: [
-            "Call back later",
-            "Pick up now and make a good impression, but there is a 70% chance your food will burn",
-          ],
-          timed: true,
-          time: 35,
-        },
-        {
-          // 5 Rare
-          text: "You’ve been approved for a professional development opportunity, and you can either accept a modest training grant or take a chance applying for an elite fellowship that few people get. What would you go for?",
-          options: [
-            "Accept a guaranteed 500 kr training grant",
-            "Apply to an elite fellowship with a 5% chance to receive 100,000 kr for career development",
-          ],
-          timed: true,
-          time: 35,
-        },
-        {
-          // 6 Common
-          text: "You’re about to leave for an appointment but realize you could stop by the restroom first. You’d likely still make it on time, but there’s a small chance you might be late. Do you risk it?",
-          options: [
-            "Leave now: guaranteed modest comfort during the appointment",
-            "Use the restroom with a 70% chance of being on time and fully comfortable",
-          ],
-          timed: false,
-        },
-        {
-          // 7 Rare
-          text: "You’ve been invited to perform at a local event, where you can take a guaranteed small audience slot or audition for the main showcase with a much larger crowd. What would you do?",
-          options: [
-            "Audition for a major showcase with a 70% chance of high exposure",
-            "Guaranteed minor showcase slot with modest exposure",
-          ],
-          timed: true,
-          time: 35,
-        },
-        {
-          // 8 Common
-          text: "You’re stuck on a tricky puzzle. The game offers a guaranteed small hint, or you could complete a quick challenge that might unlock a much bigger clue. What would you choose?",
-          options: [
-            "Attempt a quick challenge with a 10% chance of earning a big hint",
-            "Take a guaranteed small hint",
-          ],
-          timed: true,
-          time: 35,
-        },
-        {
-          // 9 Rare
-          text: "On your way home, your GPS shows two routes, one reliable and another is a shortcut that saves you a lot time, but can sometimes backfire as you can get lost. Which route do you take? ",
-          options: [
-            "Take a route that reliable, you'll be home a bit late",
-            "Take a shortcut with a 10% chance to save 20 minutes",
-          ],
-          timed: false,
-        },
-        {
-          // 10 Common
-          text: "You’re facing a small issue at work. You can schedule a short guaranteed meeting with your supervisor tomorrow, or send a quick message now that usually gets resolved faster. How do you handle it?",
-          options: [
-            "Schedule a guaranteed short 1:1 next day",
-            "Send a message with an 70% chance of same-day resolution",
-          ],
-          timed: true,
-          time: 35,
-        },
-        {
-          // 11 Rare
-          text: "Your professor offers a small guaranteed bonus point, but there’s also an optional tough bonus question that could earn you more. Do you take the safe reward or test your luck?",
-          options: [
-            "Attempt a tough bonus question with a 10% chance to earn 20 bonus points",
-            "Take 2 bonus points for sure",
-          ],
-          timed: false,
-        },
-        {
-          // 12 Common
-          text: "You’re about to leave for school but your phone battery is low. You can leave now and make it for sure, or charge for a few minutes and maybe still catch the bus. What do you do? ",
-          options: [
-            "Leave now: guaranteed arrival with low battery",
-            "Charge 3 minutes with a 65% chance of catching the bus and having more battery",
-          ],
-          timed: false,
-        },
-        {
-          // 13 Rare
-          text: "You’re choosing a work tool: one gives a steady boost to your productivity, while a new beta version could either double your efficiency or slow you down completely. Which would you pick?",
-          options: [
-            "Use a stable tool that guarantees a small productivity boost",
-            "Use a beta tool with an 8% chance of a large productivity boost",
-          ],
-          timed: true,
-          time: 35,
-        },
-        {
-          // 14 Common
-          text: "It’s late and you’re tired after work. You can rest and feel somewhat better tomorrow, or head to the gym — which usually feels great afterwards but could leave you even more drained. What do you choose?",
-          options: [
-            "Go to the gym with a 70% chance of feeling great afterwards",
-            "Rest today: guaranteed mild recovery",
-          ],
-          timed: false,
-        },
-        {
-          // 15 Rare
-          text: "You’re online shopping during a sale. You can take a guaranteed small discount or enter a draw for a big store credit. Which option tempts you more?",
-          options: [
-            "Take a guaranteed 500 kr discount",
-            "Enter a draw with a 4% chance to win a 10,000 kr store credit",
-          ],
-          timed: false,
-        },
-        {
-          // 16 Common
-          text: "You’ve just finished your assignment. You can submit it now for a guaranteed small bonus or spend extra time double-checking it, which usually catches mistakes and earns a higher reward. What do you do?",
-          options: [
-            "Do a quick check with an 80% chance to earn +3 points",
-            "Submit now: guaranteed +1 point",
-          ],
-          timed: true,
-          time: 35,
-        },
-        {
-          // 17 Rare
-          text: "Your teacher offers an optional project. You can take a guaranteed modest grade bump or complete a difficult extra task that could raise your final grade significantly. What feels right to you?",
-          options: [
-            "Accept a guaranteed +1% grade bump",
-            "Attempt an extra project with a 5% chance of +10% grade bump",
-          ],
-          timed: true,
-          time: 35,
-        },
-        {
-          // 18 Common
-          text: "You’ve just finished a group project. You can quietly accept a small amount of credit for your work or speak up during the review, which often leads to more recognition. What would you do?",
-          options: [
-            "Accept guaranteed small individual credit",
-            "Speak up with an 85% chance of higher team credit",
-          ],
-          timed: false,
-        },
-        {
-          // 19 Rare
-          text: "You’ve just been paid and see an ad for a huge lottery jackpot. You can keep a small amount of your cash safely or spend it on a ticket for the chance to win big. What would you choose?",
-          options: [
-            "Take 200 kr for sure",
-            "Buy a ticket with a 1% chance to win 20,000 kr (the ticket itself is free for you)",
-          ],
-          timed: false,
-        },
-        {
-          // 20 Common
-          text: "You’re checking out online. You can take a guaranteed small discount now or select a slower delivery option that usually brings a larger discount. Which option do you pick? ",
-          options: [
-            "Take a guaranteed 100 kr discount",
-            "Choose promo delivery with an 80% chance of a 500 kr discount",
-          ],
-          timed: true,
-          time: 35,
-        },
-      ];
-      const questions1 = [
-        {
-          text: "You can take a guaranteed small cash amount or buy a ticket for a large prize. (Rare)",
-          options: [
-            "Take 300 kr for sure",
-            "Buy a ticket with a 3% chance to win 20,000 kr (the ticket itself is free for you)",
-          ],
-          timed: true,
-          time: 35,
-        },
-        {
-          text: "You can accept a guaranteed small discount or choose a delivery option that usually yields a bigger discount. (Common)",
-          options: [
-            "Take a guaranteed 100 kr discount",
-            "Choose promo delivery with an 80% chance of a 300 kr discount",
-          ],
-          timed: false,
-        },
-      ];
+      <script>
+        // ============= CONFIGURATION =============
 
-      // === DOM ELEMENTS ===
-      const infoSection = document.getElementById("info-section");
-      const consentScreen = document.getElementById("consent-screen");
-      const surveyArea = document.getElementById("survey-area");
-      const doneScreen = document.getElementById("done");
+        const baseScore = 100; // starting points for everyone
 
-      const continueBtn = document.getElementById("continue-to-consent");
-      const agreeBtn = document.getElementById("agree-btn");
-      const consentCheckbox = document.getElementById("consent-checkbox");
+        // 20 trials total: 10 rare (5 timed, 5 untimed), 10 common (5 timed, 5 untimed)
+        const trialPool = [
+          // ===== RARE, TIMED (5) =====
+          {
+            rarity: "rare",
+            timed: true,
+            time: 3,
+            text: "You can take a safe gain, or a rare chance at a much larger gain.",
+            safeLabel: "Take +20 points for sure",
+            riskyLabel: "20% chance to win +80 points, 80% chance to win 0",
+            safeDelta: 20,
+            riskyProb: 0.2,
+            riskyWin: 80,
+            riskyLose: 0,
+          },
+          {
+            rarity: "rare",
+            timed: true,
+            time: 3,
+            text: "You can keep a small safe bonus, or risk it for a rare big reward.",
+            safeLabel: "Take +15 points for sure",
+            riskyLabel: "15% chance to win +90 points, 85% chance to win 0",
+            safeDelta: 15,
+            riskyProb: 0.15,
+            riskyWin: 90,
+            riskyLose: 0,
+          },
+          {
+            rarity: "rare",
+            timed: true,
+            time: 3,
+            text: "You may choose a modest gain or a rare gamble with a high upside.",
+            safeLabel: "Take +10 points for sure",
+            riskyLabel: "10% chance to win +100 points, 90% chance to win 0",
+            safeDelta: 10,
+            riskyProb: 0.1,
+            riskyWin: 100,
+            riskyLose: 0,
+          },
+          {
+            rarity: "rare",
+            timed: true,
+            time: 3,
+            text: "You can choose a safe small reward or a risky option that might greatly boost your points.",
+            safeLabel: "Take +12 points for sure",
+            riskyLabel: "12% chance to win +120 points, 88% chance to win 0",
+            safeDelta: 12,
+            riskyProb: 0.12,
+            riskyWin: 120,
+            riskyLose: 0,
+          },
+          {
+            rarity: "rare",
+            timed: true,
+            time: 3,
+            text: "You can keep your points stable or risk them for a rare large gain but possible loss.",
+            safeLabel: "Take +8 points for sure",
+            riskyLabel: "10% chance to win +80, 90% chance to lose -20",
+            safeDelta: 8,
+            riskyProb: 0.1,
+            riskyWin: 80,
+            riskyLose: -20,
+          },
 
-      // survey elements (these were missing 👇)
-      const qTextEl = document.getElementById("question-text");
-      const optionsEl = document.getElementById("options");
-      const nextBtn = document.getElementById("next-btn");
-      const progressEl = document.getElementById("progress");
-      const timerEl = document.getElementById("timer");
+          // ===== RARE, UNTIMED (5) =====
+          {
+            rarity: "rare",
+            timed: false,
+            text: "You can take a small safe gain, or risk some points for a rare big boost.",
+            safeLabel: "Take +10 points for sure",
+            riskyLabel: "10% chance to win +100, 90% chance to lose -10",
+            safeDelta: 10,
+            riskyProb: 0.1,
+            riskyWin: 100,
+            riskyLose: -10,
+          },
+          {
+            rarity: "rare",
+            timed: false,
+            text: "Choose between a guaranteed bonus or a rare chance at a huge gain with possible loss.",
+            safeLabel: "Take +15 points for sure",
+            riskyLabel: "8% chance to win +120, 92% chance to lose -15",
+            safeDelta: 15,
+            riskyProb: 0.08,
+            riskyWin: 120,
+            riskyLose: -15,
+          },
+          {
+            rarity: "rare",
+            timed: false,
+            text: "You can secure a small win or gamble on a rare but large reward.",
+            safeLabel: "Take +12 points for sure",
+            riskyLabel: "5% chance to win +150, 95% chance to lose -5",
+            safeDelta: 12,
+            riskyProb: 0.05,
+            riskyWin: 150,
+            riskyLose: -5,
+          },
+          {
+            rarity: "rare",
+            timed: false,
+            text: "You can lock in a modest gain or risk losing some points for a small chance at a jackpot.",
+            safeLabel: "Take +10 points for sure",
+            riskyLabel: "4% chance to win +200, 96% chance to lose -20",
+            safeDelta: 10,
+            riskyProb: 0.04,
+            riskyWin: 200,
+            riskyLose: -20,
+          },
+          {
+            rarity: "rare",
+            timed: false,
+            text: "You can stay safe with a small gain, or risk points for a rare large increase.",
+            safeLabel: "Take +8 points for sure",
+            riskyLabel: "5% chance to win +120, 95% chance to lose -10",
+            safeDelta: 8,
+            riskyProb: 0.05,
+            riskyWin: 120,
+            riskyLose: -10,
+          },
 
-      // === STATE ===
-      let currentIndex = 0;
-      let answers = [];
-      let selectedOption = null;
-      let countdownId = null;
-      let timeLeft = 0;
+          // ===== COMMON, TIMED (5) =====
+          {
+            rarity: "common",
+            timed: true,
+            time: 3,
+            text: "You can take a sure gain, or choose an option that usually gives a higher reward.",
+            safeLabel: "Take +15 points for sure",
+            riskyLabel: "70% chance to win +30, 30% chance to win 0",
+            safeDelta: 15,
+            riskyProb: 0.7,
+            riskyWin: 30,
+            riskyLose: 0,
+          },
+          {
+            rarity: "common",
+            timed: true,
+            time: 3,
+            text: "Choose between a safe moderate gain and a common higher reward.",
+            safeLabel: "Take +18 points for sure",
+            riskyLabel: "80% chance to win +25, 20% chance to win 0",
+            safeDelta: 18,
+            riskyProb: 0.8,
+            riskyWin: 25,
+            riskyLose: 0,
+          },
+          {
+            rarity: "common",
+            timed: true,
+            time: 3,
+            text: "You can secure points or choose a risky option that usually increases your total.",
+            safeLabel: "Take +12 points for sure",
+            riskyLabel: "75% chance to win +28, 25% chance to win 0",
+            safeDelta: 12,
+            riskyProb: 0.75,
+            riskyWin: 28,
+            riskyLose: 0,
+          },
+          {
+            rarity: "common",
+            timed: true,
+            time: 3,
+            text: "Choose between a safe small gain and a common higher reward gamble.",
+            safeLabel: "Take +10 points for sure",
+            riskyLabel: "65% chance to win +35, 35% chance to win 0",
+            safeDelta: 10,
+            riskyProb: 0.65,
+            riskyWin: 35,
+            riskyLose: 0,
+          },
+          {
+            rarity: "common",
+            timed: true,
+            time: 3,
+            text: "You can keep a sure reward or pick an option that usually gives you more points.",
+            safeLabel: "Take +14 points for sure",
+            riskyLabel: "70% chance to win +32, 30% chance to win 0",
+            safeDelta: 14,
+            riskyProb: 0.7,
+            riskyWin: 32,
+            riskyLose: 0,
+          },
 
-      // === FLOW LOGIC ===
-      continueBtn.addEventListener("click", () => {
-        infoSection.classList.add("hidden");
-        consentScreen.classList.remove("hidden");
-      });
+          // ===== COMMON, UNTIMED (5) =====
+          {
+            rarity: "common",
+            timed: false,
+            text: "You can accept a guaranteed small gain or choose a gamble that often gives higher rewards.",
+            safeLabel: "Take +12 points for sure",
+            riskyLabel: "80% chance to win +22, 20% chance to win 0",
+            safeDelta: 12,
+            riskyProb: 0.8,
+            riskyWin: 22,
+            riskyLose: 0,
+          },
+          {
+            rarity: "common",
+            timed: false,
+            text: "You may choose a sure reward, or a common gamble with a better outcome.",
+            safeLabel: "Take +15 points for sure",
+            riskyLabel: "75% chance to win +25, 25% chance to win 0",
+            safeDelta: 15,
+            riskyProb: 0.75,
+            riskyWin: 25,
+            riskyLose: 0,
+          },
+          {
+            rarity: "common",
+            timed: false,
+            text: "You can take a stable small gain or choose a risky option that usually pays more.",
+            safeLabel: "Take +10 points for sure",
+            riskyLabel: "70% chance to win +30, 30% chance to win 0",
+            safeDelta: 10,
+            riskyProb: 0.7,
+            riskyWin: 30,
+            riskyLose: 0,
+          },
+          {
+            rarity: "common",
+            timed: false,
+            text: "Choose between a sure small bonus or a gamble that often increases your points.",
+            safeLabel: "Take +8 points for sure",
+            riskyLabel: "65% chance to win +28, 35% chance to win 0",
+            safeDelta: 8,
+            riskyProb: 0.65,
+            riskyWin: 28,
+            riskyLose: 0,
+          },
+          {
+            rarity: "common",
+            timed: false,
+            text: "You can secure a modest gain or choose an option that usually gives a higher reward.",
+            safeLabel: "Take +14 points for sure",
+            riskyLabel: "80% chance to win +20, 20% chance to win 0",
+            safeDelta: 14,
+            riskyProb: 0.8,
+            riskyWin: 20,
+            riskyLose: 0,
+          },
+        ];
 
-      consentCheckbox.addEventListener("change", () => {
-        agreeBtn.disabled = !consentCheckbox.checked;
-      });
-
-      agreeBtn.addEventListener("click", () => {
-        consentScreen.classList.add("hidden");
-        surveyArea.classList.remove("hidden");
-        showQuestion(currentIndex);
-      });
-
-      // === RENDER QUESTION ===
-      function showQuestion(index) {
-        const q = questions[index]; // use the full 20-question list
-        qTextEl.textContent = q.text;
-        progressEl.textContent = `Question ${index + 1} of ${questions.length}`;
-
-        // build options
-        optionsEl.innerHTML = "";
-        q.options.forEach((opt) => {
-          const label = document.createElement("label");
-          label.className = "option";
-
-          const input = document.createElement("input");
-          input.type = "radio";
-          input.name = "option";
-          input.value = opt;
-
-          input.addEventListener("change", () => {
-            selectedOption = opt;
-            nextBtn.disabled = false;
-          });
-
-          const span = document.createElement("span");
-          span.textContent = opt;
-
-          label.appendChild(input);
-          label.appendChild(span);
-          optionsEl.appendChild(label);
-        });
-
-        // reset button + timer
-        selectedOption = null;
-        nextBtn.disabled = true;
-
-        clearInterval(countdownId);
-        if (q.timed) {
-          const secs = typeof q.time === "number" ? q.time : 40;
-          startTimer(secs);
-        } else {
-          timerEl.classList.add("hidden");
+        function shuffle(array) {
+          return array
+            .map((x) => ({ x, r: Math.random() }))
+            .sort((a, b) => a.r - b.r)
+            .map((o) => o.x);
         }
-      }
 
-      function startTimer(seconds) {
-        timeLeft = seconds;
-        timerEl.textContent = `Time left: ${timeLeft}s`;
-        timerEl.classList.remove("hidden");
+        const questions = shuffle(trialPool); // randomized trials
 
-        countdownId = setInterval(() => {
-          timeLeft--;
-          timerEl.textContent = `Time left: ${timeLeft}s`;
+        // ============= DOM ELEMENTS =============
+        const infoSection = document.getElementById("info-section");
+        const consentScreen = document.getElementById("consent-screen");
+        const surveyArea = document.getElementById("survey-area");
+        const doneScreen = document.getElementById("done");
 
-          if (timeLeft <= 0) {
-            clearInterval(countdownId);
-            // if no answer, record timeout
-            if (!selectedOption) {
-              answers.push({
-                question: questions[currentIndex].text,
-                answer: "No answer (timed out)",
-                timed: !!questions[currentIndex].timed,
-              });
-              goNext();
-            } else {
-              submitCurrentAndNext();
-            }
-          }
-        }, 1000);
-      }
+        const continueBtn = document.getElementById("continue-to-consent");
+        const agreeBtn = document.getElementById("agree-btn");
+        const consentCheckbox = document.getElementById("consent-checkbox");
 
-      function submitCurrentAndNext() {
-        answers.push({
-          question: questions[currentIndex].text,
-          answer: selectedOption || "",
-          timed: !!questions[currentIndex].timed,
-        });
+        const qTextEl = document.getElementById("question-text");
+        const optionsEl = document.getElementById("options");
+        const nextBtn = document.getElementById("next-btn");
+        const progressEl = document.getElementById("progress");
+        const timerEl = document.getElementById("timer");
+        const scoreEl = document.getElementById("score-display");
+        const outcomeTextEl = document.getElementById("outcome-text");
 
-        goNext();
-      }
-
-      function goNext() {
-        currentIndex++;
-        if (currentIndex >= questions.length) {
-          finishSurvey();
-        } else {
-          showQuestion(currentIndex);
-        }
-      }
-
-      async function finishSurvey() {
-        clearInterval(countdownId);
-        surveyArea.classList.add("hidden");
-        doneScreen.classList.remove("hidden");
+        // ============= STATE =============
+        let score = baseScore;
+        let currentIndex = 0;
+        let answers = [];
+        let selectedOption = null; // "safe" or "risky"
+        let countdownId = null;
+        let timeLeft = 0;
 
         const endpoint =
           "https://script.google.com/macros/s/AKfycbyW_FrU7aq4aoi-iiCobxezRyA_4gdK-rgeAynGSkROsN8xsvoKThJ213d3nWNBP8Sr/exec";
 
-        try {
-          await fetch(endpoint, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(answers),
-          });
-        } catch (err) {
-          console.error("Error sending responses:", err);
-        }
-      }
+        // ============= FLOW =============
+        continueBtn.addEventListener("click", () => {
+          infoSection.classList.add("hidden");
+          consentScreen.classList.remove("hidden");
+        });
 
-      nextBtn.addEventListener("click", () => {
-        clearInterval(countdownId);
-        submitCurrentAndNext();
-      });
-    </script>
+        consentCheckbox.addEventListener("change", () => {
+          agreeBtn.disabled = !consentCheckbox.checked;
+        });
+
+        agreeBtn.addEventListener("click", () => {
+          consentScreen.classList.add("hidden");
+          surveyArea.classList.remove("hidden");
+          score = baseScore;
+          updateScoreDisplay();
+          showQuestion(currentIndex);
+        });
+
+        function updateScoreDisplay() {
+          scoreEl.textContent = `Total points: ${score}`;
+        }
+
+        function showQuestion(index) {
+          const q = questions[index];
+          qTextEl.textContent = q.text;
+          progressEl.textContent = `Question ${index + 1} of ${
+            questions.length
+          }`;
+          outcomeTextEl.textContent = "";
+          optionsEl.innerHTML = "";
+
+          // Safe option
+          const safeLabel = document.createElement("label");
+          safeLabel.className = "option";
+          const safeInput = document.createElement("input");
+          safeInput.type = "radio";
+          safeInput.name = "option";
+          safeInput.value = "safe";
+          safeInput.addEventListener("change", () => {
+            selectedOption = "safe";
+            nextBtn.disabled = false;
+          });
+          const safeSpan = document.createElement("span");
+          safeSpan.textContent = q.safeLabel;
+          safeLabel.appendChild(safeInput);
+          safeLabel.appendChild(safeSpan);
+          optionsEl.appendChild(safeLabel);
+
+          // Risky option
+          const riskyLabel = document.createElement("label");
+          riskyLabel.className = "option";
+          const riskyInput = document.createElement("input");
+          riskyInput.type = "radio";
+          riskyInput.name = "option";
+          riskyInput.value = "risky";
+          riskyInput.addEventListener("change", () => {
+            selectedOption = "risky";
+            nextBtn.disabled = false;
+          });
+          const riskySpan = document.createElement("span");
+          riskySpan.textContent = q.riskyLabel;
+          riskyLabel.appendChild(riskyInput);
+          riskyLabel.appendChild(riskySpan);
+          optionsEl.appendChild(riskyLabel);
+
+          selectedOption = null;
+          nextBtn.disabled = true;
+
+          clearInterval(countdownId);
+          if (q.timed) {
+            const secs = typeof q.time === "number" ? q.time : 3;
+            startTimer(secs);
+          } else {
+            timerEl.classList.add("hidden");
+          }
+        }
+
+        function startTimer(seconds) {
+          timeLeft = seconds;
+          timerEl.textContent = `Time left: ${timeLeft}s`;
+          timerEl.classList.remove("hidden");
+
+          countdownId = setInterval(() => {
+            timeLeft--;
+            timerEl.textContent = `Time left: ${timeLeft}s`;
+
+            if (timeLeft <= 0) {
+              clearInterval(countdownId);
+              if (!selectedOption) {
+                // timeout
+                recordAnswer("No answer (timed out)", null);
+                goNext();
+              } else {
+                submitCurrentAndNext();
+              }
+            }
+          }, 1000);
+        }
+
+        function recordAnswer(choiceLabel, outcomeDelta) {
+          const q = questions[currentIndex];
+          answers.push({
+            questionIndex: currentIndex,
+            questionText: q.text,
+            rarity: q.rarity,
+            timed: q.timed,
+            choice: choiceLabel, // "safe", "risky", or timeout string
+            outcomeDelta: outcomeDelta,
+            totalScoreAfter: score,
+          });
+        }
+
+        function submitCurrentAndNext() {
+          const q = questions[currentIndex];
+          let outcomeDelta = 0;
+          let choiceLabel = selectedOption;
+
+          if (selectedOption === "safe") {
+            outcomeDelta = q.safeDelta;
+          } else if (selectedOption === "risky") {
+            const r = Math.random();
+            if (r < q.riskyProb) {
+              outcomeDelta = q.riskyWin;
+            } else {
+              outcomeDelta = q.riskyLose;
+            }
+          }
+
+          score += outcomeDelta;
+          updateScoreDisplay();
+
+          if (selectedOption) {
+            const sign = outcomeDelta > 0 ? "+" : "";
+            outcomeTextEl.textContent = `Outcome: ${sign}${outcomeDelta} points. New total: ${score}`;
+          }
+
+          recordAnswer(choiceLabel, outcomeDelta);
+          goNext();
+        }
+
+        function goNext() {
+          currentIndex++;
+          if (currentIndex >= questions.length) {
+            finishSurvey();
+          } else {
+            clearInterval(countdownId);
+            showQuestion(currentIndex);
+          }
+        }
+
+        async function finishSurvey() {
+          clearInterval(countdownId);
+          surveyArea.classList.add("hidden");
+          doneScreen.classList.remove("hidden");
+
+          try {
+            await fetch(endpoint, {
+              method: "POST",
+              mode: "no-cors",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(answers),
+            });
+          } catch (err) {
+            console.error("Error sending responses:", err);
+          }
+        }
+
+        nextBtn.addEventListener("click", () => {
+          clearInterval(countdownId);
+          if (!selectedOption) return;
+          submitCurrentAndNext();
+        });
+      </script>
+    </div>
   </body>
 </html>
