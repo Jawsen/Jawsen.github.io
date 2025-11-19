@@ -114,6 +114,68 @@
       .instructions-screen ul {
         line-height: 1.6;
       }
+
+      /* ===== SCORE ANIMATION STYLES ===== */
+      #score-wrapper {
+        position: relative;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #111827;
+      }
+
+      /* Pulse on the total score */
+      .score-pulse {
+        animation: scorePulse 0.4s ease-out;
+      }
+
+      @keyframes scorePulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Floating delta (+20 / -10) */
+      .score-delta {
+        position: absolute;
+        right: 0;
+        top: -2px;
+        font-weight: 700;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .score-delta.positive {
+        color: #16a34a; /* green */
+      }
+
+      .score-delta.negative {
+        color: #b91c1c; /* red */
+      }
+
+      .score-delta.show {
+        animation: floatUpFade 0.8s ease-out forwards;
+      }
+
+      @keyframes floatUpFade {
+        0% {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+        20% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+      }
     </style>
   </head>
   <body>
@@ -256,10 +318,7 @@
       </div>
 
       <!-- INSTRUCTIONS SCREEN -->
-      <div
-        id="instructions-screen"
-        class="instructions-screen hidden"
-      >
+      <div id="instructions-screen" class="instructions-screen hidden">
         <h1>Instructions - Please read before you start!</h1>
         <p>
           In this task, you will make a series of choices between two options.
@@ -305,22 +364,20 @@
       <!-- SURVEY SCREEN -->
       <div id="survey-area" class="hidden">
         <h1>Survey</h1>
-        <div
-          id="score-display"
-          style="margin-bottom: 8px; font-weight: 600; color: #111827"
-        >
-          Total points: 100
+
+        <!-- SCORE WRAPPER WITH DELTA -->
+        <div id="score-wrapper">
+          <div id="score-display">Total points: 100</div>
+          <div id="score-delta" class="score-delta hidden"></div>
         </div>
+
         <div class="progress" id="progress"></div>
 
         <!-- TIMER IN THE MIDDLE -->
         <div id="timer" class="timer hidden">
           <div id="timer-text" class="timer-text"></div>
           <div class="timer-bar-outer">
-            <div
-              id="timer-bar-inner"
-              class="timer-bar-inner"
-            ></div>
+            <div id="timer-bar-inner" class="timer-bar-inner"></div>
           </div>
         </div>
 
@@ -651,6 +708,7 @@
         const timerTextEl = document.getElementById("timer-text");
         const timerBarFill = document.getElementById("timer-bar-inner");
         const scoreEl = document.getElementById("score-display");
+        const scoreDeltaEl = document.getElementById("score-delta");
         const outcomeTextEl = document.getElementById("outcome-text");
 
         // ============= STATE =============
@@ -692,6 +750,27 @@
 
         function updateScoreDisplay() {
           scoreEl.textContent = `Total points: ${score}`;
+        }
+
+        function showScoreAnimation(delta) {
+          if (delta == null || delta === 0) return;
+
+          // pulse the total score
+          scoreEl.classList.remove("score-pulse");
+          void scoreEl.offsetWidth; // force reflow so animation restarts
+          scoreEl.classList.add("score-pulse");
+
+          // floating delta
+          scoreDeltaEl.classList.remove("hidden", "positive", "negative", "show");
+          const sign = delta > 0 ? "+" : "";
+          scoreDeltaEl.textContent = `${sign}${delta}`;
+          scoreDeltaEl.classList.add(delta > 0 ? "positive" : "negative");
+          scoreDeltaEl.classList.add("show");
+
+          // remove "show" after animation
+          setTimeout(() => {
+            scoreDeltaEl.classList.remove("show");
+          }, 900);
         }
 
         function showQuestion(index) {
@@ -809,6 +888,7 @@
 
           score += outcomeDelta;
           updateScoreDisplay();
+          showScoreAnimation(outcomeDelta);
 
           if (selectedOption) {
             const sign = outcomeDelta > 0 ? "+" : "";
