@@ -1,0 +1,7 @@
+[
+  {"title":"Monthly patterns by offence category","kicker":"EDA · Time","category":"temporal","format":"Coming next","type":"placeholder","size":"wide","placeholder":"Monthly event counts, 2015–2024","description":"A home for the monthly robbery, assault, battery and handgun assault/battery series."},
+  {"title":"Where events concentrate","kicker":"EDA · Place","category":"spatial","format":"Map slot","type":"placeholder","placeholder":"Chicago community-area map","description":"Use this slot for a choropleth, hotspot map or community-area comparison."},
+  {"title":"The week, hour by hour","kicker":"EDA · Rhythm","category":"temporal","format":"Heatmap slot","type":"placeholder","placeholder":"Hour × weekday heatmap","description":"Firearm-involved events rise through afternoons and evenings, with late-night weekend activity."},
+  {"title":"Different offences, different signatures","kicker":"EDA · Categories","category":"category","format":"Chart slot","type":"placeholder","placeholder":"Robbery · Assault · Battery","description":"Compare category trends, geographic concentration or short-term repeat shares side by side."},
+  {"title":"Philadelphia replication","kicker":"Replication · Perspective","category":"comparison","format":"Chart slot","type":"placeholder","size":"wide","placeholder":"First-six-hour enrichment by distance","description":"Place Chicago’s primary results in perspective by repeating the confirmed-shooting scale test in Philadelphia."}
+]
